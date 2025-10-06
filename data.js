@@ -25,7 +25,7 @@ var APP_DATA = {
       "faceSize": 1944,
       "initialViewParameters": {
         "pitch": 0,
-        "yaw": 0,
+        "yaw": 3.141592653589793, 
         "fov": 1.5707963267948966
       },
       "linkHotspots": [
@@ -104,7 +104,7 @@ var APP_DATA = {
           "yaw": 2.5530875579180963,
           "pitch": -0.03407070329142314,
           "title": "Corn",
-          "text": "Text"
+          "text": "<img src='img/BarnCloseUps/corn.jpg' style='max-width:100%; height:auto;'>"        
         }
       ]
     },

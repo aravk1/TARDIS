@@ -71,6 +71,7 @@
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
 
   // Create scenes.
+  var currentScene = null;
   var scenes = data.scenes.map(function(data) {
     var urlPrefix = "tiles";
     var source = Marzipano.ImageUrlSource.fromString(
@@ -186,6 +187,7 @@
     stopAutorotate();
     scene.view.setParameters(scene.data.initialViewParameters);
     scene.scene.switchTo();
+    currentScene = scene;
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
@@ -283,7 +285,7 @@
 
     return wrapper;
   }
-
+  /*
   function createInfoHotspotElement(hotspot) {
 
     // Create wrapper element to hold icon and tooltip.
@@ -356,6 +358,125 @@
 
     return wrapper;
   }
+  */
+  function createInfoHotspotElement(hotspot) {
+
+  // wrapper and header like original
+  var wrapper = document.createElement('div');
+  wrapper.classList.add('hotspot', 'info-hotspot');
+
+  var header = document.createElement('div');
+  header.classList.add('info-hotspot-header');
+
+  var iconWrapper = document.createElement('div');
+  iconWrapper.classList.add('info-hotspot-icon-wrapper');
+  var icon = document.createElement('img');
+  icon.src = 'img/info.png';
+  icon.classList.add('info-hotspot-icon');
+  iconWrapper.appendChild(icon);
+
+  var titleWrapper = document.createElement('div');
+  titleWrapper.classList.add('info-hotspot-title-wrapper');
+  var title = document.createElement('div');
+  title.classList.add('info-hotspot-title');
+  title.innerHTML = hotspot.title || '';
+  titleWrapper.appendChild(title);
+
+  var closeWrapper = document.createElement('div');
+  closeWrapper.classList.add('info-hotspot-close-wrapper');
+  var closeIcon = document.createElement('img');
+  closeIcon.src = 'img/close.png';
+  closeIcon.classList.add('info-hotspot-close-icon');
+  closeWrapper.appendChild(closeIcon);
+
+  header.appendChild(iconWrapper);
+  header.appendChild(titleWrapper);
+  header.appendChild(closeWrapper);
+
+  var text = document.createElement('div');
+  text.classList.add('info-hotspot-text');
+  // keep existing text (if any)
+  text.innerHTML = hotspot.text || '';
+
+  wrapper.appendChild(header);
+  wrapper.appendChild(text);
+
+  // stop touch/scroll propagation so hotspot clicks work cleanly
+  stopTouchAndScrollEventPropagation(wrapper);
+
+  // Prepare a single global modal (create lazily once)
+  var modal = document.getElementById('infoModal');
+  var modalTitle = document.getElementById('infoModalTitle');
+  var modalBody = document.getElementById('infoModalBody');
+  var modalClose = document.getElementById('infoModalClose') || document.getElementById('infoModalClose');
+
+  function showModal() {
+    // Fill modal content
+    modalTitle.innerText = hotspot.title || '';
+    modalBody.innerHTML = ''; // clear previous
+
+    if (hotspot.photo) {
+      var img = document.createElement('img');
+      img.src = hotspot.photo;
+      img.alt = hotspot.title || '';
+      modalBody.appendChild(img);
+    }
+    if (hotspot.text) {
+      var p = document.createElement('div');
+      p.className = 'info-text';
+      p.innerHTML = hotspot.text;
+      modalBody.appendChild(p);
+    }
+
+    modal.classList.add('visible');
+  }
+
+  function hideModal() {
+    modal.classList.remove('visible');
+  }
+
+  // close button
+  modalClose.addEventListener('click', function (e) {
+    e.stopPropagation();
+    hideModal();
+  });
+
+  // close if click outside inner
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) hideModal();
+  });
+
+  // keyboard Esc to close
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') hideModal();
+  });
+
+  // When the hotspot header is clicked: optionally animate view then show modal
+  wrapper.querySelector('.info-hotspot-header').addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    // If we have a currentScene, animate the view to hotspot yaw/pitch first (short animation)
+    if (currentScene && currentScene.view && typeof currentScene.view.animate === 'function') {
+      try {
+        currentScene.view.animate({
+          yaw: hotspot.yaw,
+          pitch: hotspot.pitch,
+          fov: 1.2
+        }, 600, Marzipano.util.easeInOutQuad, function() {
+          showModal();
+        });
+        return;
+      } catch (err) {
+        // Fall back to immediate show if animate fails
+        console.warn('View animate failed:', err);
+      }
+    }
+    // Fallback: just show the modal
+    showModal();
+  });
+
+  return wrapper;
+}
 
   // Prevent touch and scroll events from reaching the parent element.
   function stopTouchAndScrollEventPropagation(element, eventList) {

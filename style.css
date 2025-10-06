@@ -828,3 +828,43 @@ body.view-control-buttons .viewControlButton {
 .viewControlButton-6 {
   margin-left: 105px;
 }
+
+/* Info modal */
+.info-modal {
+  position: fixed;
+  top: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 88vw;
+  max-height: 88vh;
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  border-radius: 8px;
+  z-index: 2000;
+  display: none;
+  overflow: auto;
+  padding: 12px;
+}
+.info-modal.visible { display: block; }
+.info-modal-inner { position: relative; }
+.info-modal-close {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+.info-modal-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 8px auto;
+}
+.info-modal-body .info-text {
+  margin-top: 8px;
+  color: #222;
+  font-size: 15px;
+}

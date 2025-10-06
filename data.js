@@ -104,7 +104,8 @@ var APP_DATA = {
           "yaw": 2.5530875579180963,
           "pitch": -0.03407070329142314,
           "title": "Corn",
-          "text": "<img src='img/BarnCloseUps/corn.jpg' style='max-width:100%; height:auto;'>"        
+          "text": "Text" , 
+          "photo": "img/BarnCloseUps/corn.jpg"     
         }
       ]
     },
@@ -155,7 +156,8 @@ var APP_DATA = {
           "yaw": 2.814956317136735,
           "pitch": 0.09807648974411798,
           "title": "Dey Farm Info",
-          "text": "Text"
+          "text": "Text", 
+          "photo": "img/BarnCloseUps/BarnInfo.jpg"
         },
         {
           "yaw": 2.6226767807211573,
@@ -167,13 +169,15 @@ var APP_DATA = {
           "yaw": 2.3391264469026973,
           "pitch": 0.3366973608681114,
           "title": "<div>Primary Source Doc</div>",
-          "text": "Text"
+          "text": "Text",
+          "photo": "img/BarnCloseUps/PrimarySource.jpg"
         },
         {
           "yaw": 2.3377200302855083,
           "pitch": 0.17827197696971453,
           "title": "View Table",
-          "text": "Text"
+          "text": "Text", 
+          "photo": "img/BarnCloseUps/TableCloseUp.jpg"
         }
       ]
     },

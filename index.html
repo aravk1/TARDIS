@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="vendor/reset.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="multiple-scenes ">
 
 <div id="pano"></div>
@@ -94,6 +95,17 @@
 
 <script src="data.js"></script>
 <script src="index.js"></script>
+
+
+
+<!-- Info popup modal (reusable) -->
+<div id="infoModal" class="info-modal">
+  <div class="info-modal-inner">
+    <button id="infoModalClose" class="info-modal-close" aria-label="Close">×</button>
+    <h2 id="infoModalTitle"></h2>
+    <div id="infoModalBody" class="info-modal-body"></div>
+  </div>
+</div>
 
 </body>
 </html>

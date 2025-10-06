@@ -409,6 +409,20 @@
   var modalTitle = document.getElementById('infoModalTitle');
   var modalBody = document.getElementById('infoModalBody');
   var modalClose = document.getElementById('infoModalClose') || document.getElementById('infoModalClose');
+  
+  if (modalClose) {
+    modalClose.addEventListener('click', function(e) {
+      e.stopPropagation();
+      modal.classList.remove('visible');
+    });
+  }
+
+  // Optional: close modal if clicking outside inner content
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) modal.classList.remove('visible');
+    });
+  }
 
   function showModal() {
     // Fill modal content
@@ -435,12 +449,6 @@
     modal.classList.remove('visible');
   }
 
-  // close button
-  modalClose.addEventListener('click', function (e) {
-    e.stopPropagation();
-    hideModal();
-  });
-
   // close if click outside inner
   modal.addEventListener('click', function (e) {
     if (e.target === modal) hideModal();
@@ -451,28 +459,27 @@
     if (e.key === 'Escape') hideModal();
   });
 
-  // When the hotspot header is clicked: optionally animate view then show modal
   wrapper.querySelector('.info-hotspot-header').addEventListener('click', function (e) {
     e.stopPropagation();
 
-    // If we have a currentScene, animate the view to hotspot yaw/pitch first (short animation)
-    if (currentScene && currentScene.view && typeof currentScene.view.animate === 'function') {
-      try {
-        currentScene.view.animate({
-          yaw: hotspot.yaw,
-          pitch: hotspot.pitch,
-          fov: 1.2
-        }, 600, Marzipano.util.easeInOutQuad, function() {
-          showModal();
-        });
-        return;
-      } catch (err) {
-        // Fall back to immediate show if animate fails
-        console.warn('View animate failed:', err);
-      }
+    // Fill modal content
+    modalTitle.innerText = hotspot.title || '';
+    modalBody.innerHTML = '';
+
+    if (hotspot.photo) {
+      var img = document.createElement('img');
+      img.src = hotspot.photo;
+      img.alt = hotspot.title || '';
+      modalBody.appendChild(img);
     }
-    // Fallback: just show the modal
-    showModal();
+    if (hotspot.text) {
+      var p = document.createElement('div');
+      p.className = 'info-text';
+      p.innerHTML = hotspot.text;
+      modalBody.appendChild(p);
+    }
+
+    modal.classList.add('visible');
   });
 
   return wrapper;

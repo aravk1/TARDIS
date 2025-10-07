@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TARDIS - Dey Farm</title>
+<meta charset="utf-8">
+<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+<style> @-ms-viewport { width: device-width; } </style>
+<link rel="stylesheet" href="vendor/reset.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="multiple-scenes ">
+
+<div id="pano"></div>
+
+<div id="sceneList">
+  <ul class="scenes">
+    
+      <a href="javascript:void(0)" class="scene" data-id="0-front_of_barn">
+        <li class="text">front_of_barn</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="1-barn_center">
+        <li class="text">barn_center</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="2-barn_table">
+        <li class="text">barn_table</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="3-wood_cutter">
+        <li class="text">wood_cutter</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="4-back_of_barn">
+        <li class="text">back_of_barn</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="5-back_outside">
+        <li class="text">back_outside</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="6-bed_otherside">
+        <li class="text">bed_otherside</li>
+      </a>
+    
+      <a href="javascript:void(0)" class="scene" data-id="7-bedside">
+        <li class="text">bedside</li>
+      </a>
+    
+  </ul>
+</div>
+
+<div id="titleBar">
+  <h1 class="sceneName"></h1>
+</div>
+
+<a href="javascript:void(0)" id="autorotateToggle">
+  <img class="icon off" src="img/play.png">
+  <img class="icon on" src="img/pause.png">
+</a>
+
+<a href="javascript:void(0)" id="fullscreenToggle">
+  <img class="icon off" src="img/fullscreen.png">
+  <img class="icon on" src="img/windowed.png">
+</a>
+
+<a href="javascript:void(0)" id="sceneListToggle">
+  <img class="icon off" src="img/expand.png">
+  <img class="icon on" src="img/collapse.png">
+</a>
+
+<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+  <img class="icon" src="img/up.png">
+</a>
+<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+  <img class="icon" src="img/down.png">
+</a>
+<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+  <img class="icon" src="img/left.png">
+</a>
+<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+  <img class="icon" src="img/right.png">
+</a>
+<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+  <img class="icon" src="img/plus.png">
+</a>
+<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+  <img class="icon" src="img/minus.png">
+</a>
+
+<!-- Info popup modal (reusable) -->
+<div id="infoModal" class="info-modal">
+  <div class="info-modal-inner">
+    <button id="infoModalClose" class="info-modal-close" aria-label="Close">×</button>
+    <h2 id="infoModalTitle"></h2>
+    <div id="infoModalBody" class="info-modal-body"></div>
+  </div>
+</div>
+
+
+<script src="vendor/screenfull.min.js" ></script>
+<script src="vendor/bowser.min.js" ></script>
+<script src="vendor/marzipano.js" ></script>
+
+<script src="data.js"></script>
+<script src="index.js"></script>
+
+
+
+<!-- Chat Widget -->
+<div id="chat-container">
+  <div id="chat-header">TARDIS Chat</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input-container">
+    <input id="chat-input" type="text" placeholder="Ask about Dey Farm..." />
+    <button id="chat-send">Send</button>
+  </div>
+</div>
+
+<script>
+  const API_URL = "https://tardis-backend.vercel.app/api/chat";
+
+  const chatMessages = document.getElementById("chat-messages");
+  const chatInput = document.getElementById("chat-input");
+  const chatSend = document.getElementById("chat-send");
+
+  async function sendMessage() {
+    const userText = chatInput.value.trim();
+    if (!userText) return;
+    chatInput.value = "";
+
+    // Display user message
+    const userDiv = document.createElement("div");
+    userDiv.className = "message user";
+    userDiv.textContent = userText;
+    chatMessages.appendChild(userDiv);
+
+    // Send to backend
+    const responseDiv = document.createElement("div");
+    responseDiv.className = "message bot";
+    responseDiv.textContent = "Thinking...";
+    chatMessages.appendChild(responseDiv);
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: userText }],
+        }),
+      });
+      const data = await res.json();
+      const reply = data.reply?.content || "No response.";
+      responseDiv.textContent = reply;
+    } catch (err) {
+      responseDiv.textContent = "Error connecting to backend.";
+    }
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  chatSend.addEventListener("click", sendMessage);
+  chatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
+
+
+
+</body>
+</html>

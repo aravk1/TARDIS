@@ -106,5 +106,67 @@
 <script src="data.js"></script>
 <script src="index.js"></script>
 
+
+
+<!-- Chat Widget -->
+<div id="chat-container">
+  <div id="chat-header">TARDIS Chat</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input-container">
+    <input id="chat-input" type="text" placeholder="Ask about Dey Farm..." />
+    <button id="chat-send">Send</button>
+  </div>
+</div>
+
+<script>
+  const API_URL = "https://tardis-backend.vercel.app/api/chat";
+
+  const chatMessages = document.getElementById("chat-messages");
+  const chatInput = document.getElementById("chat-input");
+  const chatSend = document.getElementById("chat-send");
+
+  async function sendMessage() {
+    const userText = chatInput.value.trim();
+    if (!userText) return;
+    chatInput.value = "";
+
+    // Display user message
+    const userDiv = document.createElement("div");
+    userDiv.className = "message user";
+    userDiv.textContent = userText;
+    chatMessages.appendChild(userDiv);
+
+    // Send to backend
+    const responseDiv = document.createElement("div");
+    responseDiv.className = "message bot";
+    responseDiv.textContent = "Thinking...";
+    chatMessages.appendChild(responseDiv);
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: userText }],
+        }),
+      });
+      const data = await res.json();
+      const reply = data.reply?.content || "No response.";
+      responseDiv.textContent = reply;
+    } catch (err) {
+      responseDiv.textContent = "Error connecting to backend.";
+    }
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  chatSend.addEventListener("click", sendMessage);
+  chatInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
+
+
+
 </body>
 </html>

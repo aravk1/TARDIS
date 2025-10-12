@@ -7,9 +7,22 @@
 <style> @-ms-viewport { width: device-width; } </style>
 <link rel="stylesheet" href="vendor/reset.min.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tour-style.css">
 </head>
 
-<body class="multiple-scenes ">
+<body class="multiple-scenes view-control-buttons">
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="sites.html">Historic Sites</a></li>
+      <li><a href="team.html">The Team</a></li>
+      <li><a href="work-with-us.html">Work With Us</a></li>
+      <li><a href="schools.html">For Schools</a></li>
+    </ul>
+  </nav>
+</header>
 
 <div id="pano"></div>
 
@@ -17,35 +30,35 @@
   <ul class="scenes">
     
       <a href="javascript:void(0)" class="scene" data-id="0-front_of_barn">
-        <li class="text">front_of_barn</li>
+        <li class="text">Front of Barn</li>
       </a>
     
       <a href="javascript:void(0)" class="scene" data-id="1-barn_center">
-        <li class="text">barn_center</li>
+        <li class="text">Barn Center</li>
       </a>
     
       <a href="javascript:void(0)" class="scene" data-id="2-barn_table">
-        <li class="text">barn_table</li>
+        <li class="text">Barn Table</li>
       </a>
     
       <a href="javascript:void(0)" class="scene" data-id="3-wood_cutter">
-        <li class="text">wood_cutter</li>
+        <li class="text">Wood Cutter</li>
       </a>
     
       <a href="javascript:void(0)" class="scene" data-id="4-back_of_barn">
-        <li class="text">back_of_barn</li>
+        <li class="text">Back of Barn</li>
       </a>
     
       <a href="javascript:void(0)" class="scene" data-id="5-back_outside">
-        <li class="text">back_outside</li>
+        <li class="text">Back Outside</li>
       </a>
     
       <a href="javascript:void(0)" class="scene" data-id="6-bed_otherside">
-        <li class="text">bed_otherside</li>
+        <li class="text">Bedroom (Other Side)</li>
       </a>
     
       <a href="javascript:void(0)" class="scene" data-id="7-bedside">
-        <li class="text">bedside</li>
+        <li class="text">Bedroom (Bedside)</li>
       </a>
     
   </ul>
@@ -89,7 +102,6 @@
   <img class="icon" src="img/minus.png">
 </a>
 
-<!-- Info popup modal (reusable) -->
 <div id="infoModal" class="info-modal">
   <div class="info-modal-inner">
     <button id="infoModalClose" class="info-modal-close" aria-label="Close">×</button>
@@ -98,7 +110,6 @@
   </div>
 </div>
 
-
 <script src="vendor/screenfull.min.js" ></script>
 <script src="vendor/bowser.min.js" ></script>
 <script src="vendor/marzipano.js" ></script>
@@ -106,9 +117,6 @@
 <script src="data.js"></script>
 <script src="index.js"></script>
 
-
-
-<!-- Chat Widget -->
 <div id="chat-container">
   <div id="chat-header">TARDIS Chat</div>
   <div id="chat-messages"></div>
@@ -128,19 +136,20 @@
   async function sendMessage() {
     const userText = chatInput.value.trim();
     if (!userText) return;
-    chatInput.value = "";
-
-    // Display user message
+    
     const userDiv = document.createElement("div");
     userDiv.className = "message user";
     userDiv.textContent = userText;
     chatMessages.appendChild(userDiv);
+    
+    chatInput.value = "";
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    // Send to backend
     const responseDiv = document.createElement("div");
     responseDiv.className = "message bot";
     responseDiv.textContent = "Thinking...";
     chatMessages.appendChild(responseDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
       const res = await fetch(API_URL, {
@@ -165,8 +174,6 @@
     if (e.key === "Enter") sendMessage();
   });
 </script>
-
-
 
 </body>
 </html>

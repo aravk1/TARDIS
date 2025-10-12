@@ -3,37 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the eTour</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      background: #f4f4f9;
-      margin: 0;
-      padding: 3rem;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    button {
-      background: #0078ff;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005fcc;
-    }
-  </style>
+  <title>Welcome to TARDIS eTour</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Welcome to TARDIS</h1>
-  <p>Explore local historical sites, learn their stories, and engage with an AI tour guide.</p>
-  <button onclick="enterTour()">Enter the Tour</button>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="sites.html">Historic Sites</a></li>
+        <li><a href="team.html">The Team</a></li>
+        <li><a href="work-with-us.html">Work With Us</a></li>
+        <li><a href="schools.html">For Schools</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="welcome-container">
+    <h1>Welcome to TARDIS</h1>
+    <p>Explore local historical sites, learn their stories, and engage with an AI tour guide.</p>
+    <button onclick="enterTour()">Enter the Tour</button>
+  </main>
 
   <script>
     function enterTour() {

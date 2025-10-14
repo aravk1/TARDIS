@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to TARDIS eTour</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TARDIS - Welcome</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="about.html">About</a></li>
+        <li><a href="index.html" class="active">About</a></li>
         <li><a href="sites.html">Historic Sites</a></li>
         <li><a href="team.html">The Team</a></li>
         <li><a href="work-with-us.html">Work With Us</a></li>
@@ -19,16 +24,38 @@
     </nav>
   </header>
 
-  <main class="welcome-container">
-    <h1>Welcome to TARDIS</h1>
-    <p>Explore local historical sites, learn their stories, and engage with an AI tour guide.</p>
-    <button onclick="enterTour()">Enter the Tour</button>
+  <main>
+    <!-- Hero Section with Background Image -->
+    <section class="hero-section">
+      <div class="hero-overlay">
+        <div class="hero-text">
+          <h1>TARDIS</h1>
+          <p>Your time travel through history begins now.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The "About" Section with the Content Box -->
+    <section class="about-section">
+      <div class="content-box">
+        <h2>History Reimagined</h2>
+        <p>
+          Every town has a story, but these stories are often hidden in plain sight. Despite the tireless work of preservation communities, a gap exists between our rich heritage and a modern audience, especially younger generations accustomed to digital interaction. TARDIS is our answer. We create immersive 360-degree virtual tours that transport you directly inside local historic sites. Each experience is powered by an interactive AI guide you can talk to and ask questions of in real time. We are closing the gap by making local history hands-on, engaging, and unforgettable for anyone, anywhere.
+        </p>
+      </div>
+    </section>
+    
+    <!-- The NEW, Separate Buttons Section -->
+    <section class="buttons-section">
+        <div class="nav-buttons-container">
+            <a href="sites.html" class="nav-button">See Our Sites</a>
+            <a href="team.html" class="nav-button">Meet The Team</a>
+            <a href="work-with-us.html" class="nav-button">Work With Us</a>
+            <a href="schools.html" class="nav-button">For Schools</a>
+        </div>
+    </section>
+
   </main>
 
-  <script>
-    function enterTour() {
-      window.location.href = "tour.html";
-    }
-  </script>
 </body>
 </html>

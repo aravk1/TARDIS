@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TARDIS - For Schools</title>
   <link rel="stylesheet" href="style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="about.html">About</a></li>
+        <li><a href="index.html">About</a></li>
         <li><a href="sites.html">Historic Sites</a></li>
         <li><a href="team.html">The Team</a></li>
         <li><a href="work-with-us.html">Work With Us</a></li>
@@ -18,11 +22,94 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <h1>Educational Programs</h1>
-    <p>TARDIS is committed to bringing local history into the classroom. We offer engaging presentations and interactive workshops for students of all ages.</p>
-    <p>If you are an educator interested in having us visit your school, please get in touch to learn more about our educational programs.</p>
-    <!-- You can add contact information for schools here -->
+  
+  <main class="page-main-content">
+
+    <!-- The NEW Pop-up Notice -->
+    <div id="school-notice-popup" class="popup-notice">
+        <p><span class="info-icon"></span><b>Please note:</b> For now, our in-person classroom presentations are focused on the Dey Farm tour and are available for schools within Monroe Township.</p>
+        <button id="close-popup-btn" class="popup-close">&times;</button>
+    </div>
+
+    <!-- Section 1: The Page Title -->
+    <section class="page-title-section">
+      <h1 class="page-title">For Schools</h1>
+    </section>
+
+    <!-- Section 2: The Form Section -->
+    <section class="form-section white-bg">
+        <div class="form-container">
+            <h2>Bring History to Your Classroom</h2>
+            <p class="form-intro">We would be delighted to visit your classroom to present the TARDIS project. Our interactive presentation allows students to play the game, explore their town's history in a new way, and ask questions directly to our team.</p>
+            
+            <form action="#" method="POST">
+                <div class="form-grid">
+                    <!-- Teacher Name -->
+                    <div class="form-group">
+                        <label for="teacher-name">Teacher Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="teacher-name" name="teacher-name" required>
+                            <span class="form-icon user-icon"></span>
+                        </div>
+                    </div>
+                    <!-- School Name -->
+                    <div class="form-group">
+                        <label for="school-name">School Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="school-name" name="school-name" required>
+                            <span class="form-icon school-icon"></span>
+                        </div>
+                    </div>
+                    <!-- Grade Level -->
+                    <div class="form-group">
+                        <label for="grade-level">Grade Level(s)</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="grade-level" name="grade-level" required>
+                            <span class="form-icon grade-icon"></span>
+                        </div>
+                    </div>
+                    <!-- Number of Students -->
+                    <div class="form-group">
+                        <label for="student-count">Approx. Number of Students</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="student-count" name="student-count" required>
+                            <span class="form-icon community-icon"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Email Field -->
+                <div class="form-group full-width">
+                    <label for="email">Your Email Address</label>
+                    <div class="input-with-icon">
+                        <input type="email" id="email" name="email" required>
+                        <span class="form-icon email-icon"></span>
+                    </div>
+                </div>
+                <!-- Message Field -->
+                <div class="form-group full-width">
+                    <label for="message">Preferred Dates or Questions (Optional)</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <!-- Submit Button -->
+                <div class="form-group full-width submit-group">
+                    <button type="submit" class="tour-button">Request a Visit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
   </main>
+
+  <script>
+    const noticePopup = document.getElementById('school-notice-popup');
+    const closePopupButton = document.getElementById('close-popup-btn');
+
+    if (noticePopup && closePopupButton) {
+      closePopupButton.addEventListener('click', function() {
+        noticePopup.style.display = 'none';
+      });
+    }
+  </script>
+
 </body>
 </html>

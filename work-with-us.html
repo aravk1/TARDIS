@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TARDIS - Work With Us</title>
   <link rel="stylesheet" href="style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="about.html">About</a></li>
+        <li><a href="index.html">About</a></li>
         <li><a href="sites.html">Historic Sites</a></li>
         <li><a href="team.html">The Team</a></li>
         <li><a href="work-with-us.html" class="active">Work With Us</a></li>
@@ -18,11 +22,75 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <h1>Partner with TARDIS</h1>
-    <p>If you represent another town or historical society and are interested in developing a historical tour in your area, we would love to collaborate with you.</p>
-    <p>Please contact us to discuss how we can work together to share your local history with a wider audience.</p>
-    <!-- You can add a contact form or email address here -->
+  
+  <main class="page-main-content">
+
+    <!-- Section 1: The Page Title -->
+    <section class="page-title-section">
+      <h1 class="page-title">Work With Us</h1>
+    </section>
+
+    <!-- Section 2: The Map Feature -->
+    <section class="site-feature map-bg">
+        <div class="text-overlay-box">
+            <h2>History Isn't Just in Museums. It's Everywhere.</h2>
+            <p>Every town has a story etched into its streets, buildings, and landscapes. We believe these stories deserve to be told in a way that captivates a modern audience. Are you part of a town council, a historical preservation committee, a school, or simply a passionate resident who wants to share your community's unique heritage? TARDIS provides the tools and expertise to build an immersive virtual tour for you.</p>
+        </div>
+    </section>
+
+    <!-- Section 3: The Form -->
+    <section class="form-section">
+        <div class="form-container">
+            <h2>Let's Build Something Historic</h2>
+            <p class="form-intro">Fill out the form below to start the conversation about bringing TARDIS to your community.</p>
+            <form action="#" method="POST">
+                <div class="form-grid">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="name" name="name" required>
+                            <span class="form-icon user-icon"></span>
+                        </div>
+                    </div>
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-with-icon">
+                            <input type="email" id="email" name="email" required>
+                            <span class="form-icon email-icon"></span>
+                        </div>
+                    </div>
+                    <!-- Town Field -->
+                    <div class="form-group">
+                        <label for="town">Your Town / City</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="town" name="town" required>
+                            <span class="form-icon location-icon"></span>
+                        </div>
+                    </div>
+                    <!-- Site Field -->
+                    <div class="form-group">
+                        <label for="site">Specific Site (if any)</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="site" name="site">
+                            <span class="form-icon site-icon"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Message Field -->
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+                <!-- Submit Button -->
+                <div class="form-group submit-group">
+                    <button type="submit" class="tour-button">Submit Inquiry</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
   </main>
 </body>
 </html>

@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TARDIS - Historic Sites</title>
   <link rel="stylesheet" href="style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="about.html">About</a></li>
+        <li><a href="index.html">About</a></li>
         <li><a href="sites.html" class="active">Historic Sites</a></li>
         <li><a href="team.html">The Team</a></li>
         <li><a href="work-with-us.html">Work With Us</a></li>
@@ -18,10 +22,51 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <h1>Our Historic Sites</h1>
-    <p>Explore the historic locations that TARDIS helps to preserve and share with the public. Each site has a unique story to tell about our local heritage.</p>
-    <!-- You can add details about each site here -->
+  
+  <main class="page-main-content">
+
+    <!-- Section 1: The Page Title -->
+    <section class="page-title-section">
+      <h1 class="page-title">Our Historic Sites</h1>
+    </section>
+
+    <!-- Section 2: The Dey Farm Feature -->
+    <section class="site-feature dey-farm-bg">
+      <div class="site-content-box">
+        <h2>Dey Farm - Monroe Township</h2>
+        <p>Imagine a classic American farmstead where life moved at the pace of the seasons. The Dey Farm, with its sturdy home first built in 1820 and iconic red barns, is a living snapshot of that era. For generations, this 42-acre property was the heart of the Dey family's world. Here, they raised families, tended to animals, and cultivated vast fields of potatoes destined for local markets. Today, the Dey Farm stands as the proud centerpiece of a historic hamlet, offering a rare and authentic chance to connect with Monroe's rich, rural past.</p>
+      </div>
+    </section>
+
+    <!-- Section 3: The Three Image Buttons -->
+    <section class="button-grid-section">
+      <div class="button-grid">
+        <!-- Left Button -->
+        <a href="https://www.monroetwp.com/index.php/boards-commissions/historic-preservation" target="_blank" class="image-button">
+          <img src="img/BarnCloseUps/TableCloseUp.jpg" alt="A close-up of a historic wooden table.">
+          <div class="button-text"><h3>Monroe Preservation Website</h3></div>
+        </a>
+        <!-- Middle Button -->
+        <a href="tour.html" class="image-button">
+          <img src="img/BarnCloseUps/images.jpg" alt="A wide shot of the historic Dey Farm.">
+          <div class="button-text"><h3>Start The Tour</h3></div>
+        </a>
+        <!-- Right Button -->
+        <a href="work-with-us.html" class="image-button">
+          <img src="img/BarnCloseUps/oldMachinery.jpg" alt="A view of antique farm machinery.">
+          <div class="button-text"><h3>Want This For Your Town?</h3></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 4: The Expansion Section -->
+    <section class="expansion-section">
+      <div class="expansion-content">
+        <h2>More Journeys Through Time Are Coming</h2>
+        <p>TARDIS is actively partnering with new towns and historical societies to bring more stories to light. If you are passionate about preserving the unique heritage of your own community, click the button above on the right to learn how we can work together.</p>
+      </div>
+    </section>
+
   </main>
 </body>
 </html>

@@ -188,6 +188,16 @@
     scene.view.setParameters(scene.data.initialViewParameters);
     scene.scene.switchTo();
     currentScene = scene;
+
+    window.TARDIS_SCENE = {
+      id: scene.data.id,
+      name: scene.data.name,
+      context: scene.data.context || null,
+      yaw: scene.view.yaw ? scene.view.yaw() : null,
+      pitch: scene.view.pitch ? scene.view.pitch() : null,
+      fov: scene.view.fov ? scene.view.fov() : null
+    };
+
     startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
@@ -452,7 +462,13 @@
     const pitch = view.pitch();
     const fov = view.fov();
     console.log(`VIEW => yaw: ${yaw.toFixed(3)}, pitch: ${pitch.toFixed(3)}, fov: ${fov.toFixed(3)}`);
-  }, 2000); // logs every 2 seconds
+    // keep global in sync
+    if (!window.TARDIS_SCENE) window.TARDIS_SCENE = {};
+    window.TARDIS_SCENE.yaw = yaw;
+    window.TARDIS_SCENE.pitch = pitch;
+    window.TARDIS_SCENE.fov = fov;
+  }, 1000); // logs every 1 second
   // =============================
+  
 
 })();

@@ -117,7 +117,19 @@ var APP_DATA = {
           "text": "Text" , 
           "photo": "img/BarnCloseUps/corn.jpg"     
         }
-      ]
+      ], 
+      "context": {
+        "title": "Barn Center & Threshing Floor",
+        "summary": "This open central area served as the working heart of the Dey Farm barn. Wagons could drive straight through the large doors for unloading, threshing, sorting, and storing crops. The high roof and timber-frame structure show the craftsmanship of 19th-century Monroe Township barns.",
+        "keyFacts": [
+          "The wide floor allowed wagons and livestock to move directly through the barn.",
+          "Open lofts on both sides stored hay, tools, and seasonal equipment.",
+          "Hand-hewn beams and pegged joints reflect traditional Dutch-influenced construction.",
+          "Natural airflow from the front and rear doors helped dry crops and reduce dust.",
+          "Signs and artifacts on display represent local farm families and businesses."
+        ],
+        "relatedTopics": ["Threshing & Storage", "Timber Framing", "Barn Ventilation", "Agricultural Life"]
+      }
     },
     {
       "id": "2-barn_table",
@@ -189,7 +201,19 @@ var APP_DATA = {
           "text": "Text", 
           "photo": "img/BarnCloseUps/TableCloseUp.jpg"
         }
-      ]
+      ], 
+      "context": {
+        "title": "Farm Tools & Household Table Exhibit",
+        "summary": "This table displays everyday tools once used on small New Jersey farms: grinders, baskets, funnels, jars, rope, and repair tools. These objects reflect the self-sufficient lifestyle of families who harvested, processed, stored, and repaired everything themselves.",
+        "keyFacts": [
+          "Metal grinders and funnels helped prepare grain for both livestock feed and human meals.",
+          "Woven baskets and pails were used for egg gathering, produce harvesting, and storage.",
+          "Glass jars and crocks stored preserved foods before refrigeration.",
+          "Rope, tins, and hand tools reflect a culture of constant repair and reuse.",
+          "Many of these items would have been purchased at a general store or traded locally."
+        ],
+        "relatedTopics": ["Food Preservation", "Hand Tools", "Domestic Work", "Self-Sufficiency"]
+      }
     },
     {
       "id": "3-wood_cutter",
@@ -234,7 +258,19 @@ var APP_DATA = {
           "title": "View Up Close",
           "text": "Text"
         }
-      ]
+      ], 
+      "context": {
+        "title": "Wood Cutting & Repair Station",
+        "summary": "This section highlights the woodworking tools used to build fences, tool handles, wagons, and firewood. Farmers were also carpenters—able to fix almost anything on the property using hand saws, drawknives, mallets, and a shaving horse.",
+        "keyFacts": [
+          "The shaving horse was used to clamp wood while shaping tool handles and rails.",
+          "Crosscut saws and axes were used to fell and buck trees for fuel and construction.",
+          "Spare wheels, beams, and planks show how wagons were constantly repaired, not replaced.",
+          "Wood shavings on the ground hint at ongoing maintenance work typical of working barns.",
+          "Local hardwoods like oak and hickory were valued for strength and durability."
+        ],
+        "relatedTopics": ["Joinery & Carpentry", "Firewood & Fuel", "Wagon Repair", "Handcrafted Tools"]
+      }
     },
     {
       "id": "4-back_of_barn",
@@ -278,7 +314,19 @@ var APP_DATA = {
           "target": "1-barn_center"
         }
       ],
-      "infoHotspots": []
+      "infoHotspots": [],
+      "context": {
+        "title": "Back Exit and Barnyard View",
+        "summary": "The rear opening looks out onto the farmyard where crops, feed, and machinery were staged before use. This side of the barn connected directly to fields, fencing, and outbuildings such as corn cribs or poultry sheds.",
+        "keyFacts": [
+          "Rear access allowed wagons to move efficiently between fields and storage.",
+          "Farmyards often held manure piles, water troughs, and small animal pens.",
+          "Implements in view include hay rakes and field equipment once pulled by horses.",
+          "Drive-through barn layouts reduced labor and kept the harvest moving.",
+          "Wide openings helped ventilate hay and livestock in summer heat."
+        ],
+        "relatedTopics": ["Barnyard Layout", "Field-to-Barn Workflow", "Hay Storage", "Horse-Drawn Equipment"]
+      }
     },
     {
       "id": "5-back_outside",

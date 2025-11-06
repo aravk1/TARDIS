@@ -116,6 +116,12 @@
   <button id="voice-button">Speak</button>
 </div>
 
+<!-- Loading wave -->
+<div id="loadingWave" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+<div id="captions" aria-live="polite"></div>
+
 
 <script>
   const API_URL = "https://tardis-backend.vercel.app/api/chat";
@@ -253,11 +259,6 @@
   });
 </script>
 
-<!-- Loading wave -->
-<div id="loadingWave" aria-hidden="true">
-  <span></span><span></span><span></span><span></span><span></span>
-</div>
-<div id="captions" aria-live="polite"></div>
 
 </body>
 </html>

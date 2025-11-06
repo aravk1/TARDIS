@@ -120,10 +120,37 @@
 <script>
   const API_URL = "https://tardis-backend.vercel.app/api/chat";
   const API_VOICE = "https://tardis-backend.vercel.app/api/voice";
-
   const voiceButton = document.getElementById("voice-button");
 
+  // loading helpers
+  const loadingEl = document.getElementById("loadingWave");
+  function showLoading(){ loadingEl.style.display = "flex"; }
+  function hideLoading(){ loadingEl.style.display = "none"; }
+
+  // captions overlay 
+  const captionsEl = document.getElementById("captions");
+
   let recognition;
+  let captionsTimer = null;
+
+  function startCaptions(text) {
+    // simple progressive reveal (not time-aligned to audio)
+    if (!captionsEl) return;
+    clearInterval(captionsTimer);
+    captionsEl.textContent = "";
+    const words = text.split(/\s+/);
+    let i = 0;
+    captionsTimer = setInterval(() => {
+      if (i >= words.length) { clearInterval(captionsTimer); return; }
+      captionsEl.textContent += (i ? " " : "") + words[i++];
+    }, 70); // tweak speed as you like
+  }
+
+  function fullCaption(text) {
+    if (!captionsEl) return;
+    clearInterval(captionsTimer);
+    captionsEl.textContent = text;
+  }
 
   if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -136,11 +163,14 @@
       const transcript = event.results[0][0].transcript;
       console.log('User said:', transcript);
 
-      // ⬇️ read the scene snapshot the viewer published
+      // read current scene context published by index.js
       const scene = window.TARDIS_SCENE || {};
       const sceneContext = scene.context || null;
 
       try {
+        showLoading();
+
+        // 1) get reply text
         const res = await fetch(API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -148,22 +178,32 @@
             sceneId: scene.id,
             sceneName: scene.name,
             yaw: scene.yaw,
-            context: sceneContext,   // { title, summary, keyFacts, relatedTopics }
-            messages: [{ role: "user", content: transcript }]
+            context: sceneContext,
+            messages: [{ role: "user", content: transcript }],
           }),
         });
 
         const data = await res.json();
-        const reply = data.reply?.content || "No response.";
-        speak(reply);
+        const reply = data?.reply?.content || "No response.";
+
+        // start captions immediately (progressive)
+        startCaptions(reply);
+
+        // 2) request voice audio
+        await speak(reply);
+
       } catch (err) {
         console.error('Error:', err);
-        speak("Error connecting to backend.");
+        fullCaption("Error connecting to backend.");
+        await speak("Error connecting to backend.");
+      } finally {
+        hideLoading();
       }
     };
 
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
+      fullCaption("Sorry, I didn't catch that.");
       speak("Sorry, I didn't catch that.");
     };
   }
@@ -182,11 +222,19 @@
       const audioUrl = URL.createObjectURL(audioBlob);
 
       const audio = new Audio(audioUrl);
-      audio.play();
+
+      // when audio ends, leave captions on screen for a moment
+      audio.addEventListener("ended", () => {
+        // keep captions; you could fade out after N ms if desired
+        // setTimeout(() => (captionsEl.textContent = ""), 4000);
+      });
+
+      await audio.play();
     } catch (err) {
       console.error("Error playing voice:", err);
       // fallback to browser speech if backend fails
       const utterance = new SpeechSynthesisUtterance(text);
+      utterance.onend = () => { /* optional fade captions here */ };
       window.speechSynthesis.speak(utterance);
     }
   }
@@ -199,10 +247,17 @@
         voiceButton.textContent = "Speak";
       };
     } else {
+      fullCaption("Speech recognition not supported in this browser.");
       speak("Speech recognition not supported in this browser.");
     }
   });
 </script>
+
+<!-- Loading wave -->
+<div id="loadingWave" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+<div id="captions" aria-live="polite"></div>
 
 </body>
 </html>

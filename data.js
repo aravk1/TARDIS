@@ -43,7 +43,17 @@ var APP_DATA = {
           "title": "The Barn",
           "text": "Text"
         }
-      ]
+      ], 
+      "context": {
+        "title": "Front of Dey Farm Barn",
+        "summary" : "This area marks the main entrance of the historic Dey Farm Barn, constructed in the 1800s as part of the Dey family’s working farmstead. The barn’s design reflects Dutch agricultural influences common in early Monroe Township.",
+        "keyFacts": [
+          "Built in the mid-19th century by the Dey family.",
+          "Served as a central storage area for tools and feed.",
+          "Features hand-hewn timber beams and fieldstone foundation."
+        ],
+        "relatedTopics": ["Agriculture", "Architecture", "Monroe Township History"]
+      }
     },
     {
       "id": "1-barn_center",

@@ -155,12 +155,7 @@
       speak("Sorry, I didn't catch that.");
     };
   }
-  /*
-  function speak(text) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    window.speechSynthesis.speak(utterance);
-  }
-  */
+
   async function speak(text) {
     try {
       const response = await fetch(API_VOICE, {
@@ -196,8 +191,6 @@
     }
   });
 </script>
-
-
 
 </body>
 </html>

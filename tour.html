@@ -116,6 +116,7 @@
 
 <script>
   const API_URL = "https://tardis-backend.vercel.app/api/chat";
+  const API_VOICE = "https://tardis-backend.vercel.app/api/voice";
 
   const voiceButton = document.getElementById("voice-button");
 
@@ -154,10 +155,33 @@
       speak("Sorry, I didn't catch that.");
     };
   }
-
+  /*
   function speak(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
+  }
+  */
+  async function speak(text) {
+    try {
+      const response = await fetch(API_VOICE, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+
+      if (!response.ok) throw new Error("Voice API error");
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      const audio = new Audio(audioUrl);
+      audio.play();
+    } catch (err) {
+      console.error("Error playing voice:", err);
+      // fallback to browser speech if backend fails
+      const utterance = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(utterance);
+    }
   }
 
   voiceButton.addEventListener("click", () => {

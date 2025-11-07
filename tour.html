@@ -145,6 +145,24 @@
   <span></span><span></span><span></span><span></span><span></span>
 </div>
 
+<script>
+  (function(){
+    const cap = document.getElementById('captions');
+    if (!cap) return;
+    function syncDockPosition() {
+      const h = Math.min(cap.scrollHeight, cap.clientHeight || 0);
+      document.documentElement.style.setProperty('--cap-block-height', (h || 160) + 'px');
+    }
+    window.addEventListener('load', syncDockPosition);
+    window.addEventListener('resize', syncDockPosition);
+    const obs = new MutationObserver(() => {
+      cap.scrollTop = cap.scrollHeight;
+      syncDockPosition();
+    });
+    obs.observe(cap, { childList:true, subtree:true, characterData:true });
+    window.TARDIS_syncDock = syncDockPosition;
+  })();
+</script>
 
 <script>
   const API_URL = "https://tardis-backend.vercel.app/api/chat";

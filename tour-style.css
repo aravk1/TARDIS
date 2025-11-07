@@ -750,96 +750,117 @@ body.view-control-buttons .viewControlButton {
   z-index: 1100;
 }
 
-/* Main round button */
+:root {
+  --btn-bg: rgba(0,0,0,0.55);
+  --btn-bg-hover: rgba(0,0,0,0.75);
+  --white: #fff;
+
+  /* this gets updated by JS so voice dock sits above captions */
+  --cap-block-height: 160px; /* sensible default; JS will adjust */
+  --dock-gap: 10px;          /* space between dock and captions */
+}
+
+/* Voice dock sits above captions by a dynamic offset (no overlap) */
+#voiceDock {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(24px + var(--cap-block-height) + var(--dock-gap));
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 1100;
+}
+
+/* Main round button (minimal styling) */
 #voice-button {
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 56px; height: 56px;
   border-radius: 50%;
   border: 0;
-  background: radial-gradient(120px 120px at 50% -30%,
-              rgba(167,139,250,0.18), rgba(125,211,252,0.12) 40%, transparent 70%),
-              var(--btn-bg);
-  box-shadow: 0 0 18px var(--holo-glow);
-  display: grid;
-  place-items: center;
+  background: var(--btn-bg);
+  display: grid; place-items: center;
   cursor: pointer;
-  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  transition: transform .12s ease, background .15s ease;
 }
 #voice-button:hover { background: var(--btn-bg-hover); transform: translateY(-1px); }
-#voice-button:active { transform: translateY(0px) scale(0.98); }
+#voice-button:active { transform: translateY(0); }
 
-/* mic icon */
 #voice-button .mic-icon {
-  width: 26px; height: 26px; fill: var(--white);
-  opacity: 0.95; pointer-events: none;
+  width: 24px; height: 24px; fill: var(--white); opacity: .95; pointer-events: none;
 }
 
-/* Waves (hidden by default) */
-#voice-button .waves { 
-  position: absolute; inset: 0;
-  display: none; pointer-events: none;
-}
+/* Listening ripple (kept subtle) */
+#voice-button .waves { position: absolute; inset: 0; display: none; pointer-events: none; }
 #voice-button.listening .waves { display: block; }
 #voice-button .waves span {
   position: absolute; left: 50%; top: 50%;
-  width: 4px; height: 4px; border-radius: 50%;
+  width: 0; height: 0; border-radius: 50%;
   transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 24px 6px rgba(125,211,252,0.25),
-    0 0 8px 1px rgba(167,139,250,0.18);
-  animation: pulse 1.6s ease-out infinite;
+  border: 2px solid rgba(255,255,255,0.18);
+  animation: ripple 1.8s ease-out infinite;
 }
-#voice-button .waves span:nth-child(1){ animation-delay: 0s; }
-#voice-button .waves span:nth-child(2){ animation-delay: .15s; }
-#voice-button .waves span:nth-child(3){ animation-delay: .3s; }
-#voice-button .waves span:nth-child(4){ animation-delay: .45s; }
-#voice-button .waves span:nth-child(5){ animation-delay: .6s; }
-@keyframes pulse {
-  0%   { width: 0; height: 0; opacity: 0.9; box-shadow: 0 0 24px 6px rgba(125,211,252,.25); }
-  70%  { opacity: 0.25; }
-  100% { width: 120px; height: 120px; opacity: 0; }
+#voice-button .waves span:nth-child(2){ animation-delay: .2s; }
+#voice-button .waves span:nth-child(3){ animation-delay: .4s; }
+#voice-button .waves span:nth-child(4){ animation-delay: .6s; }
+#voice-button .waves span:nth-child(5){ animation-delay: .8s; }
+@keyframes ripple {
+  0%   { width: 0; height: 0; opacity: .45; }
+  70%  { opacity: .12; }
+  100% { width: 110px; height: 110px; opacity: 0; }
 }
 
-/* Spinner for GENERATING state */
+/* Spinner (simple) */
 #voice-button .spinner {
   position: absolute; inset: 0; margin: auto;
-  width: 28px; height: 28px; border-radius: 50%;
-  border: 3px solid rgba(255,255,255,0.25);
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
   border-top-color: var(--white);
-  display: none; animation: spin 0.9s linear infinite;
+  display: none; animation: spin .9s linear infinite;
 }
 #voice-button.generating .spinner { display: block; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Repeat button */
+/* Repeat button (minimal) */
 #repeat-button {
-  width: 44px; height: 44px; border-radius: 50%;
-  border: 0; cursor: pointer;
-  display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 0; cursor: pointer; display: grid; place-items: center;
   background: var(--btn-bg); color: var(--white);
+  transition: background .15s ease, transform .12s ease;
 }
-#repeat-button:hover { background: var(--btn-bg-hover); }
-#repeat-button svg { width: 22px; height: 22px; fill: currentColor; }
+#repeat-button:hover { background: var(--btn-bg-hover); transform: translateY(-1px); }
+#repeat-button:active { transform: translateY(0); }
+#repeat-button svg { width: 20px; height: 20px; fill: currentColor; }
 
-/* Captions autosize + scroll */
+/* Captions: scrollable and compact */
 #captions {
   position: absolute;
-  left: 50%; bottom: 24px; transform: translateX(-50%);
+  left: 50%; transform: translateX(-50%);
+  bottom: 24px;
   max-width: min(900px, 86vw);
-  max-height: 28vh;               /* constrain height */
-  overflow: auto;                 /* enable scroll */
-  padding: 10px 14px;
-  background: rgba(0,0,0,0.55); color: #fff;
-  border-radius: 10px; backdrop-filter: blur(4px);
-  font: 500 16px/1.35 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  max-height: 28vh;                /* sets scroll bound */
+  overflow: auto;                  /* scrolling */
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  font: 500 15px/1.35 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   z-index: 1000;
-  scroll-behavior: smooth;        /* smooth autoscroll */
+  scroll-behavior: smooth;         /* smooth autoscroll */
 }
 
-/* Optional “plain” theme toggle (set on body) */
-body.theme-plain #voice-button { box-shadow: none; background: rgba(0,0,0,0.6); }
-body.theme-plain #voice-button .waves span { box-shadow: none; }
+/* Subtle scrollbar */
+#captions::-webkit-scrollbar { width: 10px; height: 10px; }
+#captions::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 10px; }
+#captions::-webkit-scrollbar-track { background: rgba(255,255,255,0.08); border-radius: 10px; }
+
+/* Responsive: tighter stack on small screens */
+@media (max-width: 640px) {
+  #voice-button { width: 52px; height: 52px; }
+  #repeat-button { width: 38px; height: 38px; }
+  #captions { max-width: 92vw; max-height: 30vh; font-size: 14px; }
+}
 
 /*Exit Button Styling*/
 #exitBtn {

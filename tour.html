@@ -112,52 +112,126 @@
 <script src="index.js"></script>
 
 
-<div id="voice-box">
-  <button id="voice-button">Speak</button>
+<!-- Voice control (centered above captions) -->
+<div id="voiceDock">
+  <button id="voice-button" aria-label="Speak" title="Speak">
+    <!-- mic icon -->
+    <svg class="mic-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3zM5 11a1 1 0 1 0-2 0 9 9 0 0 0 8 8v3h2v-3a9 9 0 0 0 8-8 1 1 0 1 0-2 0 7 7 0 0 1-14 0z"/>
+    </svg>
+
+    <!-- reactive waves (show while LISTENING) -->
+    <div class="waves" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- spinner (show while GENERATING) -->
+    <div class="spinner" aria-hidden="true"></div>
+  </button>
+
+  <!-- Repeat last audio -->
+  <button id="repeat-button" aria-label="Repeat" title="Repeat" class="ghost">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 7h9a5 5 0 1 1 0 10H7l3-3-1.4-1.4L3.2 17l5.4 4.4L10 20l-3-3h9a7 7 0 1 0 0-14H7l3-3-1.4-1.4L3.2 5.4 8.6 9.8 10 8l-3-3z"/>
+    </svg>
+  </button>
 </div>
 
-<!-- Loading wave -->
-<div id="loadingWave" aria-hidden="true">
+<!-- Captions (auto-scroll) -->
+<div id="captions" aria-live="polite"></div>
+
+<!-- Loading wave you already added (optional to keep) -->
+<div id="loadingWave" aria-hidden="true" style="display:none">
   <span></span><span></span><span></span><span></span><span></span>
 </div>
-<div id="captions" aria-live="polite"></div>
 
 
 <script>
   const API_URL = "https://tardis-backend.vercel.app/api/chat";
   const API_VOICE = "https://tardis-backend.vercel.app/api/voice";
-  const voiceButton = document.getElementById("voice-button");
 
-  // loading helpers
-  const loadingEl = document.getElementById("loadingWave");
-  function showLoading(){ loadingEl.style.display = "flex"; }
-  function hideLoading(){ loadingEl.style.display = "none"; }
-
-  // captions overlay 
+  const voiceBtn = document.getElementById("voice-button");
+  const repeatBtn = document.getElementById("repeat-button");
   const captionsEl = document.getElementById("captions");
-
+  const loadingEl = document.getElementById("loadingWave"); // optional
   let recognition;
   let captionsTimer = null;
 
+  // ---- Simple state machine: idle | listening | generating | playing
+  let STATE = "idle";
+  function setState(s) {
+    STATE = s;
+    voiceBtn.classList.toggle("listening", s === "listening");
+    voiceBtn.classList.toggle("generating", s === "generating");
+    // optional external loader
+    if (loadingEl) loadingEl.style.display = (s === "generating") ? "flex" : "none";
+  }
+
+  // ---- Captions helpers (auto-scroll)
   function startCaptions(text) {
-    // simple progressive reveal (not time-aligned to audio)
     if (!captionsEl) return;
     clearInterval(captionsTimer);
     captionsEl.textContent = "";
-    const words = text.split(/\s+/);
+    const words = (text || "").split(/\s+/);
     let i = 0;
     captionsTimer = setInterval(() => {
       if (i >= words.length) { clearInterval(captionsTimer); return; }
       captionsEl.textContent += (i ? " " : "") + words[i++];
-    }, 70); // tweak speed as you like
+      captionsEl.scrollTop = captionsEl.scrollHeight; // autoscroll
+    }, 60);
   }
-
   function fullCaption(text) {
     if (!captionsEl) return;
     clearInterval(captionsTimer);
-    captionsEl.textContent = text;
+    captionsEl.textContent = text || "";
+    captionsEl.scrollTop = captionsEl.scrollHeight;
   }
 
+  // ---- Volume-reactive waves using Web Audio API
+  // We’ll open a mic stream parallel to webkitSpeechRecognition just for visualization.
+  let audioCtx, analyser, micSource, levelRAF;
+  function startLevelMeter() {
+    if (!navigator.mediaDevices?.getUserMedia) return;
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        micSource = audioCtx.createMediaStreamSource(stream);
+        analyser.fftSize = 256;
+        micSource.connect(analyser);
+
+        const buffer = new Uint8Array(analyser.frequencyBinCount);
+        const spans = voiceBtn.querySelectorAll(".waves span");
+
+        const loop = () => {
+          if (STATE !== "listening") return; // stop drawing when not listening
+          analyser.getByteFrequencyData(buffer);
+          // rough “level” from low bins
+          let sum = 0;
+          for (let i = 0; i < 8; i++) sum += buffer[i];
+          const level = Math.min(1, sum / (8 * 255)); // 0..1
+
+          // map level to ring size/opacity by tweaking CSS vars (or transform)
+          spans.forEach((el, idx) => {
+            const scale = 1 + level * (1.6 + idx * 0.2);
+            el.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            el.style.opacity = `${0.35 + level * 0.6}`;
+          });
+
+          levelRAF = requestAnimationFrame(loop);
+        };
+        setTimeout(() => { if (STATE === "listening") loop(); }, 50);
+      })
+      .catch(() => { /* ignore visualization if mic denied */ });
+  }
+  function stopLevelMeter() {
+    if (levelRAF) cancelAnimationFrame(levelRAF);
+    if (audioCtx) audioCtx.close().catch(()=>{});
+    if (micSource?.mediaStream) micSource.mediaStream.getTracks().forEach(t => t.stop());
+    audioCtx = analyser = micSource = null;
+  }
+
+  // ---- Speech recognition
   if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     recognition = new SpeechRecognition();
@@ -165,18 +239,18 @@
     recognition.interimResults = false;
     recognition.lang = 'en-US';
 
+    recognition.onstart = () => { setState("listening"); startLevelMeter(); };
+    recognition.onend = () => { if (STATE === "listening") setState("idle"); stopLevelMeter(); };
+
     recognition.onresult = async (event) => {
       const transcript = event.results[0][0].transcript;
-      console.log('User said:', transcript);
-
-      // read current scene context published by index.js
       const scene = window.TARDIS_SCENE || {};
       const sceneContext = scene.context || null;
 
       try {
-        showLoading();
+        setState("generating");
 
-        // 1) get reply text
+        // 1) Chat text
         const res = await fetch(API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -188,73 +262,84 @@
             messages: [{ role: "user", content: transcript }],
           }),
         });
-
         const data = await res.json();
         const reply = data?.reply?.content || "No response.";
 
-        // start captions immediately (progressive)
         startCaptions(reply);
 
-        // 2) request voice audio
-        await speak(reply);
+        // 2) Voice audio
+        await playVoice(reply);
 
       } catch (err) {
-        console.error('Error:', err);
+        console.error(err);
         fullCaption("Error connecting to backend.");
-        await speak("Error connecting to backend.");
+        await playVoice("Error connecting to backend.");
       } finally {
-        hideLoading();
+        if (STATE === "generating") setState("idle");
       }
     };
 
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
       fullCaption("Sorry, I didn't catch that.");
-      speak("Sorry, I didn't catch that.");
+      setState("idle");
+      stopLevelMeter();
     };
   }
 
-  async function speak(text) {
+  // ---- Voice: fetch + play + store last
+  let lastAudioURL = null;
+  let lastReplyText = "";
+  async function playVoice(text) {
+    lastReplyText = text;
     try {
-      const response = await fetch(API_VOICE, {
+      // move button to “playing” look if you want (optional)
+      const r = await fetch(API_VOICE, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
       });
+      if (!r.ok) throw new Error("Voice API error");
 
-      if (!response.ok) throw new Error("Voice API error");
+      // Revoke previous
+      if (lastAudioURL) URL.revokeObjectURL(lastAudioURL);
+      const blob = await r.blob();
+      lastAudioURL = URL.createObjectURL(blob);
 
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-
-      const audio = new Audio(audioUrl);
-
-      // when audio ends, leave captions on screen for a moment
-      audio.addEventListener("ended", () => {
-        // keep captions; you could fade out after N ms if desired
-        // setTimeout(() => (captionsEl.textContent = ""), 4000);
-      });
-
+      const audio = new Audio(lastAudioURL);
+      setState("playing"); // optional cosmetic if you add a style
+      audio.addEventListener("ended", () => { setState("idle"); });
       await audio.play();
-    } catch (err) {
-      console.error("Error playing voice:", err);
-      // fallback to browser speech if backend fails
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.onend = () => { /* optional fade captions here */ };
-      window.speechSynthesis.speak(utterance);
+    } catch (e) {
+      console.error("TTS fallback:", e);
+      const u = new SpeechSynthesisUtterance(text);
+      u.onend = () => setState("idle");
+      window.speechSynthesis.speak(u);
     }
   }
 
-  voiceButton.addEventListener("click", () => {
-    if (recognition) {
-      recognition.start();
-      voiceButton.textContent = "Listening...";
-      recognition.onend = () => {
-        voiceButton.textContent = "Speak";
-      };
-    } else {
+  // ---- UI actions
+  voiceBtn.addEventListener("click", () => {
+    if (!recognition) {
       fullCaption("Speech recognition not supported in this browser.");
-      speak("Speech recognition not supported in this browser.");
+      const u = new SpeechSynthesisUtterance("Speech recognition not supported in this browser.");
+      window.speechSynthesis.speak(u);
+      return;
+    }
+    try {
+      // mic hover title remains “Speak”
+      recognition.start();
+    } catch { /* starting twice throws; ignore */ }
+  });
+
+  repeatBtn.addEventListener("click", async () => {
+    if (lastAudioURL) {
+      const a = new Audio(lastAudioURL);
+      setState("playing");
+      a.addEventListener("ended", ()=> setState("idle"));
+      await a.play();
+    } else if (lastReplyText) {
+      await playVoice(lastReplyText);
     }
   });
 </script>

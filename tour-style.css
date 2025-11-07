@@ -729,29 +729,119 @@ body.view-control-buttons .viewControlButton {
 }
 
 /* Voice Button Styling */
-#voice-box {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
+:root {
+  --holo-primary: #7dd3fc;      /* sky-ish blue */
+  --holo-accent: #a78bfa;       /* purple accent */
+  --holo-glow: rgba(125,211,252,0.6);
+  --btn-bg: rgba(0,0,0,0.55);
+  --btn-bg-hover: rgba(0,0,0,0.75);
+  --white: #fff;
 }
 
+/* Center dock above captions */
+#voiceDock {
+  position: absolute;
+  left: 50%;
+  bottom: 90px; /* above captions */
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  z-index: 1100;
+}
+
+/* Main round button */
 #voice-button {
-  background: #004e89;
-  color: white;
-  border: none;
-  padding: 15px 20px;
-  border-radius: 50px;
-  font-size: 16px;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 0;
+  background: radial-gradient(120px 120px at 50% -30%,
+              rgba(167,139,250,0.18), rgba(125,211,252,0.12) 40%, transparent 70%),
+              var(--btn-bg);
+  box-shadow: 0 0 18px var(--holo-glow);
+  display: grid;
+  place-items: center;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: background 0.3s ease;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+#voice-button:hover { background: var(--btn-bg-hover); transform: translateY(-1px); }
+#voice-button:active { transform: translateY(0px) scale(0.98); }
+
+/* mic icon */
+#voice-button .mic-icon {
+  width: 26px; height: 26px; fill: var(--white);
+  opacity: 0.95; pointer-events: none;
 }
 
-#voice-button:hover {
-  background: #003b6d;
+/* Waves (hidden by default) */
+#voice-button .waves { 
+  position: absolute; inset: 0;
+  display: none; pointer-events: none;
+}
+#voice-button.listening .waves { display: block; }
+#voice-button .waves span {
+  position: absolute; left: 50%; top: 50%;
+  width: 4px; height: 4px; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 24px 6px rgba(125,211,252,0.25),
+    0 0 8px 1px rgba(167,139,250,0.18);
+  animation: pulse 1.6s ease-out infinite;
+}
+#voice-button .waves span:nth-child(1){ animation-delay: 0s; }
+#voice-button .waves span:nth-child(2){ animation-delay: .15s; }
+#voice-button .waves span:nth-child(3){ animation-delay: .3s; }
+#voice-button .waves span:nth-child(4){ animation-delay: .45s; }
+#voice-button .waves span:nth-child(5){ animation-delay: .6s; }
+@keyframes pulse {
+  0%   { width: 0; height: 0; opacity: 0.9; box-shadow: 0 0 24px 6px rgba(125,211,252,.25); }
+  70%  { opacity: 0.25; }
+  100% { width: 120px; height: 120px; opacity: 0; }
 }
 
+/* Spinner for GENERATING state */
+#voice-button .spinner {
+  position: absolute; inset: 0; margin: auto;
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.25);
+  border-top-color: var(--white);
+  display: none; animation: spin 0.9s linear infinite;
+}
+#voice-button.generating .spinner { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Repeat button */
+#repeat-button {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 0; cursor: pointer;
+  display: grid; place-items: center;
+  background: var(--btn-bg); color: var(--white);
+}
+#repeat-button:hover { background: var(--btn-bg-hover); }
+#repeat-button svg { width: 22px; height: 22px; fill: currentColor; }
+
+/* Captions autosize + scroll */
+#captions {
+  position: absolute;
+  left: 50%; bottom: 24px; transform: translateX(-50%);
+  max-width: min(900px, 86vw);
+  max-height: 28vh;               /* constrain height */
+  overflow: auto;                 /* enable scroll */
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.55); color: #fff;
+  border-radius: 10px; backdrop-filter: blur(4px);
+  font: 500 16px/1.35 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  z-index: 1000;
+  scroll-behavior: smooth;        /* smooth autoscroll */
+}
+
+/* Optional “plain” theme toggle (set on body) */
+body.theme-plain #voice-button { box-shadow: none; background: rgba(0,0,0,0.6); }
+body.theme-plain #voice-button .waves span { box-shadow: none; }
+
+/*Exit Button Styling*/
 #exitBtn {
   position: absolute;
   top: 14px;
@@ -766,50 +856,3 @@ body.view-control-buttons .viewControlButton {
   font: 600 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 #exitBtn:hover { background: rgba(0,0,0,0.75); }
-
-#loadingWave {
-  position: absolute;
-  bottom: 110px; /* above captions */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  display: none;
-  gap: 6px;
-}
-
-#loadingWave span {
-  display: inline-block;
-  width: 6px;
-  height: 22px;
-  background: rgba(255,255,255,0.85);
-  border-radius: 3px;
-  animation: wave 1.1s ease-in-out infinite;
-}
-
-#loadingWave span:nth-child(1) { animation-delay: 0s; }
-#loadingWave span:nth-child(2) { animation-delay: 0.1s; }
-#loadingWave span:nth-child(3) { animation-delay: 0.2s; }
-#loadingWave span:nth-child(4) { animation-delay: 0.3s; }
-#loadingWave span:nth-child(5) { animation-delay: 0.4s; }
-
-@keyframes wave {
-  0%, 40%, 100% { transform: scaleY(0.4); }
-  20% { transform: scaleY(1); }
-}
-
-#captions {
-  position: absolute;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
-  max-width: min(900px, 86vw);
-  padding: 10px 14px;
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  border-radius: 10px;
-  backdrop-filter: blur(4px);
-  font: 500 16px/1.35 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  z-index: 1000;
-  letter-spacing: 0.2px;
-  word-wrap: break-word;
-}

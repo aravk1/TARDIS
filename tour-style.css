@@ -12,12 +12,13 @@
 }
 
 #sceneList {
-  /*
+  
   top: 55px;
   max-height: calc(100% - 55px);
-  */
-  display: none !important; /* hide UI elements for only navigation */
+  
+  /* display: none !important; hide UI elements for only navigation */
 }
+
 
 .viewControlButton { display: none !important; }
 

@@ -452,7 +452,8 @@
   }
 
   // Display the initial scene.
-  switchScene(scenes[0]);
+  const initialScene = scenes.find(s => s.data.id === "23-house-outside") || scenes[0];
+  switchScene(initialScene);
 
   // ===== DEBUG VIEW LOGGER =====
   setInterval(() => {

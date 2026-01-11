@@ -296,9 +296,7 @@
     return wrapper;
   }
   
-  function createInfoHotspotElement(hotspot) {
-
-  // wrapper and header like original
+function createInfoHotspotElement(hotspot) {
   var wrapper = document.createElement('div');
   wrapper.classList.add('hotspot', 'info-hotspot');
 
@@ -332,88 +330,73 @@
 
   var text = document.createElement('div');
   text.classList.add('info-hotspot-text');
-  // keep existing text (if any)
   text.innerHTML = hotspot.text || '';
 
   wrapper.appendChild(header);
   wrapper.appendChild(text);
 
-  // stop touch/scroll propagation so hotspot clicks work cleanly
   stopTouchAndScrollEventPropagation(wrapper);
 
-  // Prepare a single global modal (create lazily once)
   var modal = document.getElementById('infoModal');
   var modalTitle = document.getElementById('infoModalTitle');
   var modalBody = document.getElementById('infoModalBody');
-  var modalClose = document.getElementById('infoModalClose') || document.getElementById('infoModalClose');
+  var modalClose = document.getElementById('infoModalClose');
   
   if (modalClose) {
-    modalClose.addEventListener('click', function(e) {
+    modalClose.onclick = function(e) {
       e.stopPropagation();
       modal.classList.remove('visible');
-    });
+    };
   }
 
-  // Optional: close modal if clicking outside inner content
   if (modal) {
-    modal.addEventListener('click', function(e) {
+    modal.onclick = function(e) {
       if (e.target === modal) modal.classList.remove('visible');
-    });
+    };
   }
 
-  function showModal() {
-    // Fill modal content
-    modalTitle.innerText = hotspot.title || '';
-    modalBody.innerHTML = ''; // clear previous
-
-    if (hotspot.photo) {
-      var img = document.createElement('img');
-      img.src = hotspot.photo;
-      img.alt = hotspot.title || '';
-      modalBody.appendChild(img);
-    }
-    if (hotspot.text) {
-      var p = document.createElement('div');
-      p.className = 'info-text';
-      p.innerHTML = hotspot.text;
-      modalBody.appendChild(p);
-    }
-
-    modal.classList.add('visible');
-  }
-
-  function hideModal() {
-    modal.classList.remove('visible');
-  }
-
-  // close if click outside inner
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) hideModal();
-  });
-
-  // keyboard Esc to close
-  window.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') hideModal();
-  });
-
-  wrapper.querySelector('.info-hotspot-header').addEventListener('click', function (e) {
+  wrapper.querySelector('.info-hotspot-header').addEventListener('click', function(e) {
     e.stopPropagation();
 
-    // Fill modal content
     modalTitle.innerText = hotspot.title || '';
     modalBody.innerHTML = '';
 
     if (hotspot.photo) {
+      // Image container
+      var imageContainer = document.createElement('div');
+      imageContainer.className = 'modal-image-container';
+
+      // Rotate button
+      var rotateBtn = document.createElement('button');
+      rotateBtn.className = 'rotate-button';
+      rotateBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/></svg>';
+
       var img = document.createElement('img');
       img.src = hotspot.photo;
       img.alt = hotspot.title || '';
-      modalBody.appendChild(img);
+      
+      var rotationState = 0;
+      rotateBtn.onclick = function() {
+        rotationState = (rotationState + 90) % 360;
+        img.className = '';
+        if (rotationState === 90) img.classList.add('rotated-90');
+        if (rotationState === 180) img.classList.add('rotated-180');
+        if (rotationState === 270) img.classList.add('rotated-270');
+      };
+
+      imageContainer.appendChild(rotateBtn);
+      imageContainer.appendChild(img);
+      modalBody.appendChild(imageContainer);
     }
+
     if (hotspot.text) {
-      var p = document.createElement('div');
-      p.className = 'info-text';
-      p.innerHTML = hotspot.text;
-      modalBody.appendChild(p);
+      var textContainer = document.createElement('div');
+      textContainer.className = 'modal-text-container';
+      var textDiv = document.createElement('div');
+      textDiv.className = 'info-text';
+      textDiv.innerHTML = hotspot.text;
+      textContainer.appendChild(textDiv);
+      modalBody.appendChild(textContainer);
     }
 
     modal.classList.add('visible');

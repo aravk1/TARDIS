@@ -365,7 +365,18 @@ function createInfoHotspotElement(hotspot) {
       // Image container
       var imageContainer = document.createElement('div');
       imageContainer.className = 'modal-image-container';
-      imageContainer.appendChild(rotateBtn);
+      
+      // CREATE the image element
+      var img = document.createElement('img');
+      img.src = hotspot.photo;
+      img.alt = hotspot.title || '';
+      img.style.cursor = 'pointer';
+      
+      // Click image to open fullscreen overlay (we'll add this function next)
+      img.onclick = function() {
+        openImageOverlay(hotspot.photo, hotspot.title);
+      };
+      
       imageContainer.appendChild(img);
       modalBody.appendChild(imageContainer);
     }

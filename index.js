@@ -295,7 +295,53 @@
 
     return wrapper;
   }
+
+function openImageOverlay(imageSrc, title) {
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:10001; display:flex; align-items:center; justify-content:center;';
   
+  var img = document.createElement('img');
+  img.src = imageSrc;
+  img.style.cssText = 'max-width:90vw; max-height:90vh; object-fit:contain;';
+  
+  var rotationState = 0;
+  
+  // Auto-detect and rotate portrait images
+  img.onload = function() {
+    if (img.naturalHeight > img.naturalWidth) {
+      // Portrait - rotate 90° to landscape
+      rotationState = 90;
+      img.style.transform = 'rotate(90deg)';
+    }
+  };
+  
+  // Rotate button
+  var rotateBtn = document.createElement('button');
+  rotateBtn.textContent = '↻';
+  rotateBtn.style.cssText = 'position:fixed; top:20px; right:80px; width:50px; height:50px; border-radius:50%; background:white; border:none; cursor:pointer; font-size:24px;';
+  rotateBtn.onclick = function() {
+    rotationState = (rotationState + 90) % 360;
+    img.style.transform = 'rotate(' + rotationState + 'deg)';
+  };
+  
+  // Close button
+  var closeBtn = document.createElement('button');
+  closeBtn.textContent = '×';
+  closeBtn.style.cssText = 'position:fixed; top:20px; right:20px; width:50px; height:50px; border-radius:50%; background:white; border:none; cursor:pointer; font-size:32px;';
+  closeBtn.onclick = function() {
+    document.body.removeChild(overlay);
+  };
+  
+  overlay.onclick = function(e) {
+    if (e.target === overlay) document.body.removeChild(overlay);
+  };
+  
+  overlay.appendChild(img);
+  overlay.appendChild(rotateBtn);
+  overlay.appendChild(closeBtn);
+  document.body.appendChild(overlay);
+}
+
 function createInfoHotspotElement(hotspot) {
   var wrapper = document.createElement('div');
   wrapper.classList.add('hotspot', 'info-hotspot');

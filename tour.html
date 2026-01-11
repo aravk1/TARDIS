@@ -12,9 +12,23 @@
 
 <body class="multiple-scenes view-control-buttons">
 
+<!--  
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">About</a></li>
+      <li><a href="sites.html">Historic Sites</a></li>
+      <li><a href="team.html">The Team</a></li>
+      <li><a href="work-with-us.html">Work With Us</a></li>
+      <li><a href="schools.html">For Schools</a></li>
+    </ul>
+  </nav>
+</header>
+-->
+
 <div id="pano"></div>
 <a id="exitBtn" href="sites.html" aria-label="Exit tour">Exit</a>
-<!-- nearly 200 lines referencing all the scenes-->
+
 <div id="sceneList">
   <ul class="scenes">
       <a href="javascript:void(0)" class="scene" data-id="0-dey-house-entrance">
@@ -197,7 +211,7 @@
       <a href="javascript:void(0)" class="scene" data-id="59-old-equipment-1">
         <li class="text">Old Equipment 1</li>
       </a>
-  </ul> 
+  </ul>
 </div>
 
 <div id="titleBar">
@@ -240,10 +254,8 @@
 
 <div id="infoModal" class="info-modal">
   <div class="info-modal-inner">
-    <div class="info-modal-header">
-      <h2 id="infoModalTitle"></h2>
-      <button id="infoModalClose" class="info-modal-close" aria-label="Close">×</button>
-    </div>
+    <button id="infoModalClose" class="info-modal-close" aria-label="Close">×</button>
+    <h2 id="infoModalTitle"></h2>
     <div id="infoModalBody" class="info-modal-body"></div>
   </div>
 </div>

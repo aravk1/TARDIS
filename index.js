@@ -361,100 +361,11 @@ function createInfoHotspotElement(hotspot) {
     modalTitle.innerText = hotspot.title || '';
     modalBody.innerHTML = '';
 
-    var rotationState = 0; // Track rotation for both views
-
     if (hotspot.photo) {
       // Image container
       var imageContainer = document.createElement('div');
       imageContainer.className = 'modal-image-container';
-
-      // Rotate button (rotates in-place in modal)
-      var rotateBtn = document.createElement('button');
-      rotateBtn.className = 'rotate-button';
-      rotateBtn.title = 'Rotate image';
-      rotateBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/></svg>';
-
-      // Expand button
-      var expandBtn = document.createElement('button');
-      expandBtn.className = 'expand-button';
-      expandBtn.title = 'Expand image';
-      expandBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
-
-      var img = document.createElement('img');
-      img.src = hotspot.photo;
-      img.alt = hotspot.title || '';
-      
-      // Rotate in modal view
-      rotateBtn.onclick = function(e) {
-        e.stopPropagation();
-        rotationState = (rotationState + 90) % 360;
-        img.className = '';
-        if (rotationState === 90) img.classList.add('rotated-90');
-        else if (rotationState === 180) img.classList.add('rotated-180');
-        else if (rotationState === 270) img.classList.add('rotated-270');
-      };
-
-      // Expand image to fullscreen overlay
-      expandBtn.onclick = function(e) {
-        e.stopPropagation();
-        
-        // Create overlay
-        var overlay = document.createElement('div');
-        overlay.className = 'image-expanded-overlay visible';
-        
-        // Clone image with current rotation
-        var expandedImg = document.createElement('img');
-        expandedImg.src = img.src;
-        expandedImg.alt = img.alt;
-        expandedImg.className = img.className;
-        
-        // Close button
-        var closeBtn = document.createElement('button');
-        closeBtn.className = 'expanded-close-button';
-        closeBtn.title = 'Close';
-        closeBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
-        
-        // Rotate button for expanded view
-        var expandedRotateBtn = document.createElement('button');
-        expandedRotateBtn.className = 'expanded-rotate-button';
-        expandedRotateBtn.title = 'Rotate image';
-        expandedRotateBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/></svg>';
-        
-        closeBtn.onclick = function() {
-          document.body.removeChild(overlay);
-        };
-        
-        overlay.onclick = function(e) {
-          if (e.target === overlay) {
-            document.body.removeChild(overlay);
-          }
-        };
-        
-        expandedRotateBtn.onclick = function(e) {
-          e.stopPropagation();
-          rotationState = (rotationState + 90) % 360;
-          expandedImg.className = '';
-          img.className = ''; // Keep modal image in sync
-          if (rotationState === 90) {
-            expandedImg.classList.add('rotated-90');
-            img.classList.add('rotated-90');
-          } else if (rotationState === 180) {
-            expandedImg.classList.add('rotated-180');
-            img.classList.add('rotated-180');
-          } else if (rotationState === 270) {
-            expandedImg.classList.add('rotated-270');
-            img.classList.add('rotated-270');
-          }
-        };
-        
-        overlay.appendChild(expandedImg);
-        overlay.appendChild(closeBtn);
-        overlay.appendChild(expandedRotateBtn);
-        document.body.appendChild(overlay);
-      };
-
       imageContainer.appendChild(rotateBtn);
-      imageContainer.appendChild(expandBtn);
       imageContainer.appendChild(img);
       modalBody.appendChild(imageContainer);
     }
@@ -474,6 +385,7 @@ function createInfoHotspotElement(hotspot) {
 
   return wrapper;
 }
+
   // Prevent touch and scroll events from reaching the parent element.
   function stopTouchAndScrollEventPropagation(element, eventList) {
     var eventList = [ 'touchstart', 'touchmove', 'touchend', 'touchcancel',

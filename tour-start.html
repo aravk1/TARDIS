@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Starting Location</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    img {
+      max-width: 95vw;
+      max-height: 85vh;
+      display: block;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choose Your Starting Point</h1>
+  
+  <img src="img/dey_farm_site_painting.jpg" usemap="#image-map" id="farmMap" alt="Dey Farm Site Map">
+  <map name="image-map">
+    <area alt="Barn" title="Barn" href="tour.html#35-barn-outside" coords="2535,527,3268,981" shape="rect">
+    <area alt="Schoolhouse" title="Schoolhouse" href="tour.html#24-schoolhouse-outside" coords="2329,1390,2914,1783" shape="rect">
+    <area alt="House" title="House" href="tour.html#23-house-outside" coords="1275,615,1999,1096" shape="rect">
+    <area alt="Equipment Barn" title="Equipment Barn" href="tour.html#46-equipment-barn-outside" coords="125,986,1197,1350" shape="rect">
+  </map>
+
+  <script>
+    function resizeMap() {
+      const img = document.getElementById('farmMap');
+      const areas = document.querySelectorAll('map[name="image-map"] area');
+      const originalWidth = 3456;
+      const scale = img.clientWidth / originalWidth;
+      
+      areas.forEach(area => {
+        const coords = area.dataset.originalCoords || area.getAttribute('coords');
+        if (!area.dataset.originalCoords) area.dataset.originalCoords = coords;
+        area.setAttribute('coords', coords.split(',').map(c => Math.round(c * scale)).join(','));
+      });
+    }
+
+    window.addEventListener('load', resizeMap);
+    window.addEventListener('resize', resizeMap);
+  </script>
+</body>
+</html>

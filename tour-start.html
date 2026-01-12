@@ -141,6 +141,25 @@
       border-radius: 2px;
     }
 
+    /* Hover effect - radial glow */
+    .hover-highlight {
+      position: absolute;
+      pointer-events: none;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 200, 0.4) 20%,
+        rgba(255, 255, 150, 0.2) 40%,
+        transparent 70%);
+      border-radius: 50%;
+      display: none;
+      transform: translate(-50%, -50%);
+      filter: blur(8px);
+      mix-blend-mode: screen;
+      transition: opacity 0.2s ease;
+    }
+
     /* Instruction text */
     .instruction {
       position: absolute;
@@ -179,19 +198,6 @@
         font-size: 0.85rem;
         bottom: -45px;
       }
-      /* Hover effect for clickable areas */
-      .hover-highlight {
-        position: absolute;
-        pointer-events: none;
-        background: rgba(255, 220, 100, 0.3);
-        border: 2px solid rgba(255, 200, 50, 0.6);
-        box-shadow: 
-          0 0 20px rgba(255, 220, 100, 0.4),
-          inset 0 0 20px rgba(255, 220, 100, 0.2);
-        border-radius: 4px;
-        display: none;
-        transition: opacity 0.3s ease;
-      }
     }
   </style>
 </head>
@@ -214,9 +220,16 @@
   </div>
 
   <script>
+    const img = document.getElementById('farmMap');
+    const mapContainer = document.querySelector('.map-container');
+    const areas = document.querySelectorAll('map[name="image-map"] area');
+    
+    // Create hover highlight element
+    const highlight = document.createElement('div');
+    highlight.className = 'hover-highlight';
+    mapContainer.appendChild(highlight);
+
     function resizeMap() {
-      const img = document.getElementById('farmMap');
-      const areas = document.querySelectorAll('map[name="image-map"] area');
       const originalWidth = 3456;
       const scale = img.clientWidth / originalWidth;
       
@@ -225,38 +238,34 @@
         if (!area.dataset.originalCoords) area.dataset.originalCoords = coords;
         area.setAttribute('coords', coords.split(',').map(c => Math.round(c * scale)).join(','));
       });
-      // Create hover highlight element
-      const highlight = document.createElement('div');
-      highlight.className = 'hover-highlight';
-      document.querySelector('.map-container').appendChild(highlight);
-
-      const areas = document.querySelectorAll('area');
-      const img = document.getElementById('farmMap');
-
-      areas.forEach(area => {
-        area.addEventListener('mouseenter', function() {
-          const coords = this.getAttribute('coords').split(',').map(Number);
-          const imgRect = img.getBoundingClientRect();
-          const containerRect = img.parentElement.getBoundingClientRect();
-          
-          // Calculate position relative to container
-          const left = coords[0] + (imgRect.left - containerRect.left);
-          const top = coords[1] + (imgRect.top - containerRect.top);
-          const width = coords[2] - coords[0];
-          const height = coords[3] - coords[1];
-          
-          highlight.style.left = left + 'px';
-          highlight.style.top = top + 'px';
-          highlight.style.width = width + 'px';
-          highlight.style.height = height + 'px';
-          highlight.style.display = 'block';
-        });
-        
-        area.addEventListener('mouseleave', function() {
-          highlight.style.display = 'none';
-        });
-      });
     }
+
+    // Hover effects - glow follows mouse
+    let currentArea = null;
+
+    areas.forEach(area => {
+      area.addEventListener('mouseenter', function() {
+        currentArea = this;
+        highlight.style.display = 'block';
+      });
+      
+      area.addEventListener('mouseleave', function() {
+        currentArea = null;
+        highlight.style.display = 'none';
+      });
+    });
+
+    // Track mouse movement for glow position
+    mapContainer.addEventListener('mousemove', function(e) {
+      if (currentArea) {
+        const containerRect = mapContainer.getBoundingClientRect();
+        const x = e.clientX - containerRect.left;
+        const y = e.clientY - containerRect.top;
+        
+        highlight.style.left = x + 'px';
+        highlight.style.top = y + 'px';
+      }
+    });
 
     window.addEventListener('load', resizeMap);
     window.addEventListener('resize', resizeMap);

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choose Starting Location</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,41 +13,192 @@
     }
 
     body {
-      background: #000;
+      background: linear-gradient(135deg, #d4c8a8 0%, #e8dfc5 50%, #d4c8a8 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
+      padding: 20px;
+      position: relative;
       overflow: hidden;
     }
 
+    /* Watercolor texture overlay */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(200,190,150,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(180,170,140,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(210,200,160,0.1) 0%, transparent 50%);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Vignette effect - softer edges like watercolor */
+    body::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(200,190,150,0.2) 70%, rgba(180,170,130,0.4) 100%);
+      pointer-events: none;
+    }
+
     h1 {
-      color: white;
-      font-family: Arial, sans-serif;
-      font-size: 2rem;
+      color: #4a3f2e;
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
       margin-bottom: 2rem;
       text-align: center;
+      text-shadow: 
+        1px 1px 2px rgba(255,255,255,0.5),
+        0 0 30px rgba(228,220,188,0.3);
+      letter-spacing: 3px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .map-frame {
+      position: relative;
+      background: linear-gradient(135deg, #f5f0e0 0%, #fefdf8 50%, #f5f0e0 100%);
+      padding: 25px;
+      border-radius: 4px;
+      box-shadow: 
+        0 15px 50px rgba(0,0,0,0.25),
+        inset 0 2px 3px rgba(255,255,255,0.5),
+        inset 0 -2px 3px rgba(0,0,0,0.1);
+      border: 4px solid #b8a888;
+      max-width: 95vw;
+      max-height: 85vh;
+      z-index: 1;
+    }
+
+    /* Decorative corners */
+    .map-frame::before,
+    .map-frame::after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 3px solid #8b7a5a;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .map-frame::before {
+      top: 12px;
+      left: 12px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .map-frame::after {
+      bottom: 12px;
+      right: 12px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .corner-tl, .corner-tr {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border: 3px solid #8b7a5a;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .corner-tr {
+      top: 12px;
+      right: 12px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .corner-tl {
+      bottom: 12px;
+      left: 12px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .map-container {
+      position: relative;
+      box-shadow: 
+        inset 0 0 40px rgba(200,190,150,0.2),
+        0 2px 10px rgba(0,0,0,0.1);
+      background: #fefdfb;
+      border-radius: 2px;
     }
 
     img {
-      max-width: 95vw;
-      max-height: 85vh;
+      max-width: 90vw;
+      max-height: 75vh;
       display: block;
       cursor: pointer;
+      border-radius: 2px;
+    }
+
+    /* Instruction text */
+    .instruction {
+      position: absolute;
+      bottom: -55px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #5a4f3a;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+      white-space: nowrap;
+      opacity: 0.85;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 2px;
+      }
+
+      .map-frame {
+        padding: 18px;
+      }
+
+      .map-frame::before,
+      .map-frame::after,
+      .corner-tl,
+      .corner-tr {
+        width: 35px;
+        height: 35px;
+      }
+
+      .instruction {
+        font-size: 0.85rem;
+        bottom: -45px;
+      }
     }
   </style>
 </head>
 <body>
   <h1>Choose Your Starting Point</h1>
   
-  <img src="img/dey_farm_site_painting.jpg" usemap="#image-map" id="farmMap" alt="Dey Farm Site Map">
-  <map name="image-map">
-    <area alt="Barn" title="Barn" href="tour.html#35-barn-outside" coords="2535,527,3268,981" shape="rect">
-    <area alt="Schoolhouse" title="Schoolhouse" href="tour.html#24-schoolhouse-outside" coords="2329,1390,2914,1783" shape="rect">
-    <area alt="House" title="House" href="tour.html#23-house-outside" coords="1275,615,1999,1096" shape="rect">
-    <area alt="Equipment Barn" title="Equipment Barn" href="tour.html#46-equipment-barn-outside" coords="125,986,1197,1350" shape="rect">
-  </map>
+  <div class="map-frame">
+    <div class="corner-tr"></div>
+    <div class="corner-tl"></div>
+    <div class="map-container">
+      <img src="img/dey_farm_site_painting.jpg" usemap="#image-map" id="farmMap" alt="Dey Farm Site Map">
+      <map name="image-map">
+        <area alt="Barn" title="Barn" href="tour.html#35-barn-outside" coords="2535,527,3268,981" shape="rect">
+        <area alt="Schoolhouse" title="Schoolhouse" href="tour.html#24-schoolhouse-outside" coords="2329,1390,2914,1783" shape="rect">
+        <area alt="House" title="House" href="tour.html#0-dey-house-entrance" coords="1275,615,1999,1096" shape="rect">
+        <area alt="Equipment Barn" title="Equipment Barn" href="tour.html#46-equipment-barn-outside" coords="125,986,1197,1350" shape="rect">
+      </map>
+    </div>
+    <div class="instruction">Click on any building to begin your journey</div>
+  </div>
 
   <script>
     function resizeMap() {

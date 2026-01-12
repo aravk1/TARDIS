@@ -202,6 +202,30 @@
     updateSceneName(scene);
     updateSceneList(scene);
   }
+  // ===== HASH-BASED NAVIGATION =====
+  // Allow linking directly to scenes via URL hash (e.g., tour.html#35-barn-outside)
+
+  function loadSceneFromHash() {
+    const hash = window.location.hash.substring(1); // Remove the #
+    if (hash) {
+      const scene = findSceneById(hash);
+      if (scene) {
+        switchScene(scene);
+      } else {
+        console.warn('Scene not found:', hash);
+      }
+    }
+  }
+
+  // Load scene from hash on page load
+  window.addEventListener('load', () => {
+    setTimeout(loadSceneFromHash, 100); // Small delay to ensure scenes are initialized
+  });
+
+  // Handle hash changes (browser back/forward)
+  window.addEventListener('hashchange', loadSceneFromHash);
+
+// ====================================================
 
   function updateSceneName(scene) {
     sceneNameElement.innerHTML = sanitize(scene.data.name);

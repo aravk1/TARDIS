@@ -183,9 +183,14 @@
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }
 
-  function switchScene(scene) {
+  function switchScene(scene, entryYaw, entryYawOverride) {
     stopAutorotate();
-    scene.view.setParameters(scene.data.initialViewParameters);
+    var params = Object.assign({}, scene.data.initialViewParameters);
+    if (entryYawOverride !== undefined) {
+      params.yaw = entryYawOverride;
+    } else {
+      scene.view.setParameters(params);
+    }
     scene.scene.switchTo();
     currentScene = scene;
 
@@ -301,7 +306,7 @@
 
     // Add click event handler.
     wrapper.addEventListener('click', function() {
-      switchScene(findSceneById(hotspot.target));
+      switchScene(findSceneById(hotspot.target), hotspot.yaw, hotspot.entryYaw);
     });
 
     // Prevent touch and scroll events from reaching the parent element.

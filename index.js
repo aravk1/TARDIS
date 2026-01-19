@@ -186,11 +186,11 @@
   function switchScene(scene, entryYaw, entryYawOverride) {
     stopAutorotate();
     var params = Object.assign({}, scene.data.initialViewParameters);
-    if (entryYawOverride !== undefined) {
-      params.yaw = entryYawOverride;
-    } else {
-      scene.view.setParameters(params);
+    // Apply dynamic yaw for all scenes when entering via hotspot
+    if (entryYaw !== undefined) {
+      params.yaw = entryYaw;  // Face the same direction as the hotspot
     }
+    scene.view.setParameters(params);
     scene.scene.switchTo();
     currentScene = scene;
 
@@ -306,7 +306,7 @@
 
     // Add click event handler.
     wrapper.addEventListener('click', function() {
-      switchScene(findSceneById(hotspot.target), hotspot.yaw, hotspot.entryYaw);
+      switchScene(findSceneById(hotspot.target), hotspot.yaw);
     });
 
     // Prevent touch and scroll events from reaching the parent element.

@@ -183,13 +183,14 @@
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }
 
-  function switchScene(scene, entryYaw, entryYawOverride) {
+  function switchScene(scene, entryYaw, entryPitch) {
     stopAutorotate();
+
     var params = Object.assign({}, scene.data.initialViewParameters);
-    // Apply dynamic yaw for all scenes when entering via hotspot
-    if (entryYaw !== undefined) {
-      params.yaw = entryYaw;  // Face the same direction as the hotspot
-    }
+
+    if (entryYaw !== undefined) params.yaw = entryYaw;
+    if (entryPitch !== undefined) params.pitch = entryPitch;
+
     scene.view.setParameters(params);
     scene.scene.switchTo();
     currentScene = scene;
@@ -203,10 +204,11 @@
       fov: scene.view.fov ? scene.view.fov() : null
     };
 
-    startAutorotate();
+    //startAutorotate();
     updateSceneName(scene);
     updateSceneList(scene);
   }
+
   // ===== HASH-BASED NAVIGATION =====
   // Allow linking directly to scenes via URL hash (e.g., tour.html#35-barn-outside)
 
@@ -303,12 +305,14 @@
       var property = transformProperties[i];
       icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)';
     }
-
-    // Add click event handler.
     wrapper.addEventListener('click', function() {
-      switchScene(findSceneById(hotspot.target), hotspot.yaw);
-    });
+      window.__pendingTransition = { from: currentScene.data.id, to: hotspot.target };
 
+      var yaw = hotspot.entryView ? hotspot.entryView.yaw : hotspot.entryYaw;
+      var pitch = hotspot.entryView ? hotspot.entryView.pitch : hotspot.entryPitch;
+
+      switchScene(findSceneById(hotspot.target), yaw, pitch);
+    });
     // Prevent touch and scroll events from reaching the parent element.
     // This prevents the view control logic from interfering with the hotspot.
     stopTouchAndScrollEventPropagation(wrapper);
@@ -502,23 +506,163 @@ function createInfoHotspotElement(hotspot) {
   }
 
   // Display the initial scene.
-  switchScene(findSceneById("23-house-outside") || scenes[0]);
-
-  // ===== DEBUG VIEW LOGGER =====
-  setInterval(() => {
-    if (!currentScene) return; // scene not loaded yet
-    const view = currentScene.view;
-    const yaw = view.yaw();
-    const pitch = view.pitch();
-    const fov = view.fov();
-    console.log(`VIEW => yaw: ${yaw.toFixed(3)}, pitch: ${pitch.toFixed(3)}, fov: ${fov.toFixed(3)}`);
-    // keep global in sync
-    if (!window.TARDIS_SCENE) window.TARDIS_SCENE = {};
-    window.TARDIS_SCENE.yaw = yaw;
-    window.TARDIS_SCENE.pitch = pitch;
-    window.TARDIS_SCENE.fov = fov;
-  }, 1000); // logs every 1 second
-  // =============================
+  //switchScene(findSceneById("23-house-outside") || scenes[0]);
   
+  function savePendingEntry() {
+    if (!window.__pendingTransition) {
+      console.warn("No pending transition to save.");
+      return;
+    }
 
+    var fromId = window.__pendingTransition.from;
+    var toId = window.__pendingTransition.to;
+
+    if (!currentScene || currentScene.data.id !== toId) {
+      console.warn("You must be in the target scene to save its entry view.");
+      return;
+    }
+
+    var yaw = currentScene.view.yaw();
+    var pitch = currentScene.view.pitch();
+
+    // find the source scene object and the correct hotspot
+    var fromScene = findSceneById(fromId);
+    if (!fromScene) return;
+
+    var hs = (fromScene.data.linkHotspots || []).find(h => h.target === toId);
+    if (!hs) {
+      console.warn("Could not find hotspot in", fromId, "that targets", toId);
+      return;
+    }
+
+    // update the hotspot in data
+    hs.entryYaw = yaw;
+    hs.entryPitch = pitch;
+
+    // log it
+    if (window.__recordEntryView) {
+      window.__recordEntryView(fromId, toId, yaw, pitch);
+    }
+
+    console.log("Saved entry for", fromId, "->", toId, "yaw", yaw, "pitch", pitch);
+  }
+
+  // ===== DEBUG ENTRY VIEW LOGGER =====
+  (function () {
+
+    function getQueryFlag(name) {
+      var q = window.location.search || "";
+      return new RegExp("[?&]" + name + "=1(?:&|$)").test(q);
+    }
+
+    var DEBUG_ENTRY = getQueryFlag("debug") || localStorage.getItem("DEBUG_ENTRY") === "1";
+    var entryLog = [];
+
+    function fmt(n) {
+      return (typeof n === "number" && isFinite(n)) ? n.toFixed(6) : "null";
+    }
+
+    function buildUI() {
+      if (!DEBUG_ENTRY) return;
+
+      var panel = document.createElement("div");
+      panel.id = "debugEntryPanel";
+      panel.style.cssText =
+        "position:fixed; right:12px; bottom:12px; z-index:99999;" +
+        "background:rgba(0,0,0,0.75); color:#fff; padding:10px 12px;" +
+        "font:12px/1.35 system-ui, Arial; border-radius:10px; width:260px;";
+
+      panel.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-weight:700;">Debug: Entry Recorder</div>
+          <button id="dbgToggle" style="border:0; border-radius:8px; padding:4px 8px;">On</button>
+        </div>
+        <div style="margin-top:8px;">
+          <div><b>Scene:</b> <span id="dbgScene">-</span></div>
+          <div><b>Yaw:</b> <span id="dbgYaw">-</span></div>
+          <div><b>Pitch:</b> <span id="dbgPitch">-</span></div>
+          <div><b>FOV:</b> <span id="dbgFov">-</span></div>
+          <div><b>Saved:</b> <span id="dbgCount">0</span></div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button id="dbgDownload" style="flex:1;">Download</button>
+          <button id="dbgCopy" style="flex:1;">Copy</button>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button id="dbgClear" style="flex:1;">Clear</button>
+        </div>
+        <div id="dbgMsg" style="margin-top:6px;"></div>
+        <button id="dbgSave" style="flex:1;">Save Entry</button>
+      `;
+      document.body.appendChild(panel);
+
+      document.getElementById("dbgToggle").onclick = function () {
+        DEBUG_ENTRY = !DEBUG_ENTRY;
+        localStorage.setItem("DEBUG_ENTRY", DEBUG_ENTRY ? "1" : "0");
+        this.textContent = DEBUG_ENTRY ? "On" : "Off";
+      };
+
+      document.getElementById("dbgClear").onclick = function () {
+        entryLog = [];
+        updateUI("Cleared log.");
+      };
+
+      document.getElementById("dbgDownload").onclick = function () {
+        var text = entryLog.map(e => JSON.stringify(e)).join("\n") + "\n";
+        var blob = new Blob([text], { type: "text/plain" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "entry_views.jsonl";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        updateUI("Downloaded file.");
+      };
+
+      document.getElementById("dbgCopy").onclick = async function () {
+        try {
+          var text = entryLog.map(e => JSON.stringify(e)).join("\n") + "\n";
+          await navigator.clipboard.writeText(text);
+          updateUI("Copied to clipboard.");
+        } catch {
+          updateUI("Clipboard failed. Use Download.");
+        }
+      };
+
+      document.getElementById("dbgSave").onclick = savePendingEntry;
+
+      function updateUI(msg) {
+        if (!currentScene) return;
+        var view = currentScene.view;
+        document.getElementById("dbgScene").textContent = currentScene.data.id;
+        document.getElementById("dbgYaw").textContent = fmt(view.yaw());
+        document.getElementById("dbgPitch").textContent = fmt(view.pitch());
+        document.getElementById("dbgFov").textContent = fmt(view.fov());
+        document.getElementById("dbgCount").textContent = entryLog.length;
+        if (msg) document.getElementById("dbgMsg").textContent = msg;
+      }
+
+      window.__updateDebugEntryUI = updateUI;
+
+      (function loop() {
+        updateUI();
+        requestAnimationFrame(loop);
+      })();
+    }
+
+    buildUI();
+
+    // Expose a helper so hotspot clicks can log entry views
+    window.__recordEntryView = function (from, to, yaw, pitch) {
+      if (!DEBUG_ENTRY) return;
+      entryLog.push({
+        from: from,
+        to: to,
+        entryView: { yaw: yaw, pitch: pitch },
+        ts: Date.now()
+      });
+      if (window.__updateDebugEntryUI) window.__updateDebugEntryUI("Saved: " + from + " → " + to);
+    };
+
+  })();
 })();

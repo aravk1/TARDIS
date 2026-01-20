@@ -34,21 +34,36 @@ var APP_DATA = {
           "pitch": 0.37479811109610317,
           "rotation": 0,
           "target": "1-kitchen-front",
-          "entryYaw": 1.475761364141622
+          "entryYaw": -1.5148068290833088,
+          "entryPitch": 0.0037614371828276205,
+          "entryView": {
+            "yaw": -1.5148068290833088,
+            "pitch": 0.0037614371828276205
+          }
         },
         {
           "yaw": 3.08104041402954,
           "pitch": 0.41555527806370307,
           "rotation": 0,
           "target": "7-front-hall",
-          "entryYaw": -0.2825085726537253
+          "entryYaw": 3.0313266972345243,
+          "entryPitch": 0.0372202575817866,
+          "entryView": {
+            "yaw": 3.0313266972345243,
+            "pitch": 0.0372202575817866
+          }
         },
         {
           "yaw": 0.1937077043929616,
           "pitch": 0.43568975730267745,
           "rotation": 0,
           "target": "23-house-outside",
-          "entryYaw": -0.24267247522441338
+          "entryYaw": 3.102602691458209,
+          "entryPitch": -0.06778737731632845,
+          "entryView": {
+            "yaw": 3.102602691458209,
+            "pitch": -0.06778737731632845
+          }
         }
       ],
       "infoHotspots": [
@@ -111,14 +126,24 @@ var APP_DATA = {
           "pitch": 0.49353659919517945,
           "rotation": 0,
           "target": "0-dey-house-entrance",
-          "entryYaw": -1.6004148162459515
+          "entryYaw": 1.3120534814844902,
+          "entryPitch": 0.08755361646191773,
+          "entryView": {
+            "yaw": 1.3120534814844902,
+            "pitch": 0.08755361646191773
+          }
         },
         {
           "yaw": -2.891310210295593,
           "pitch": 0.4243715624141764,
           "rotation": 0,
           "target": "2-kitchen-back",
-          "entryYaw": 0.007788850752453058
+          "entryYaw": -3.0754197683606854,
+          "entryPitch": -0.019585637951054835,
+          "entryView": {
+            "yaw": -3.0754197683606854,
+            "pitch": -0.019585637951054835
+          }
         }
       ],
       "infoHotspots": [],
@@ -174,14 +199,24 @@ var APP_DATA = {
           "pitch": 0.69037009332936,
           "rotation": 0,
           "target": "1-kitchen-front",
-          "entryYaw": -2.891310210295593
+          "entryYaw": 0.052524799931205735,
+          "entryPitch": -0.00788118464694243,
+          "entryView": {
+            "yaw": 0.052524799931205735,
+            "pitch": -0.00788118464694243
+          }
         },
         {
           "yaw": -3.0592679134588394,
           "pitch": 0.6564288172289992,
           "rotation": 0,
           "target": "3-dining-room",
-          "entryYaw": 3.014034317635809
+          "entryYaw": -0.02592672644993499,
+          "entryPitch": 0.1698719515234206,
+          "entryView": {
+            "yaw": -0.02592672644993499,
+            "pitch": 0.1698719515234206
+          }
         }
       ],
       "infoHotspots": [],
@@ -237,21 +272,36 @@ var APP_DATA = {
           "pitch": 0.5236768773499385,
           "rotation": 0,
           "target": "2-kitchen-back",
-          "entryYaw": -3.0592679134588394
+          "entryYaw": 0.35443362816442203,
+          "entryPitch": 0.10045112481088836,
+          "entryView": {
+            "yaw": 0.35443362816442203,
+            "pitch": 0.10045112481088836
+          }
         },
         {
           "yaw": -1.8013632216498827,
           "pitch": 0.5036842718500303,
           "rotation": 0,
           "target": "4-dining-room-display",
-          "entryYaw": 1.8309007372993031
+          "entryYaw": -2.2660112403661543,
+          "entryPitch": -0.15881939087279306,
+          "entryView": {
+            "yaw": -2.2660112403661543,
+            "pitch": -0.15881939087279306
+          }
         },
         {
           "yaw": -0.16224163028056893,
           "pitch": 0.39698696055506844,
           "rotation": 0,
           "target": "6-dining-room-back-right",
-          "entryYaw": 1.5060874047766575
+          "entryYaw": -1.4310412761344473,
+          "entryPitch": -0.021020247613687815,
+          "entryView": {
+            "yaw": -1.4310412761344473,
+            "pitch": -0.021020247613687815
+          }
         }
       ],
       "infoHotspots": [],
@@ -307,14 +357,24 @@ var APP_DATA = {
           "pitch": 0.5889009822371154,
           "rotation": 0,
           "target": "3-dining-room",
-          "entryYaw": -1.8013632216498827
+          "entryYaw": 2.1322682267514708,
+          "entryPitch": -0.021903142689371435,
+          "entryView": {
+            "yaw": 2.1322682267514708,
+            "pitch": -0.021903142689371435
+          }
         },
         {
           "yaw": -0.2574587050648276,
           "pitch": 0.49760867753584037,
           "rotation": 0,
           "target": "5-dining-room-back-left",
-          "entryYaw": -3.1259247964266876
+          "entryYaw": -0.06789492396037744,
+          "entryPitch": 0.0956440016362059,
+          "entryView": {
+            "yaw": -0.06789492396037744,
+            "pitch": 0.0956440016362059
+          }
         }
       ],
       "infoHotspots": [
@@ -392,28 +452,38 @@ var APP_DATA = {
           "pitch": 0.3385919425267456,
           "rotation": 0,
           "target": "4-dining-room-display",
-          "entryYaw": -0.2574587050648276
+          "entryYaw": -2.95542491090748
         },
         {
           "yaw": 1.6263587437401688,
           "pitch": 0.6220515748472462,
           "rotation": 0,
           "target": "6-dining-room-back-right",
-          "entryYaw": -3.027864995003444
+          "entryYaw": -0.16591660378568207,
+          "entryPitch": 0.15129782453496432,
+          "entryView": {
+            "yaw": -0.16591660378568207,
+            "pitch": 0.15129782453496432
+          }
         },
         {
           "yaw": -2.456104524414595,
           "pitch": 0.4274503970606638,
           "rotation": 5.497787143782138,
           "target": "7-front-hall",
-          "entryYaw": -2.9089019977375763
+          "entryYaw": 2.975226828420423
         },
         {
           "yaw": -1.2730077054196638,
           "pitch": 0.6315699417686176,
           "rotation": 0,
           "target": "8-staircase-intersection",
-          "entryYaw": -0.2497035381866084
+          "entryYaw": 2.699361710002332,
+          "entryPitch": 0.2268525909294894,
+          "entryView": {
+            "yaw": 2.699361710002332,
+            "pitch": 0.2268525909294894
+          }
         }
       ],
       "infoHotspots": [],
@@ -469,14 +539,24 @@ var APP_DATA = {
           "pitch": 0.5006616866472928,
           "rotation": 0,
           "target": "3-dining-room",
-          "entryYaw": -0.16224163028056893
+          "entryYaw": -3.05231552184234,
+          "entryPitch": -0.024268775013354116,
+          "entryView": {
+            "yaw": -3.05231552184234,
+            "pitch": -0.024268775013354116
+          }
         },
         {
           "yaw": -3.027864995003444,
           "pitch": 0.4273195647922563,
           "rotation": 0,
           "target": "5-dining-room-back-left",
-          "entryYaw": 1.6263587437401688
+          "entryYaw": -1.4537969943924978,
+          "entryPitch": -0.05904206754847863,
+          "entryView": {
+            "yaw": -1.4537969943924978,
+            "pitch": -0.05904206754847863
+          }
         }
       ],
       "infoHotspots": [
@@ -540,28 +620,43 @@ var APP_DATA = {
           "pitch": 0.3688215151294578,
           "rotation": 0,
           "target": "0-dey-house-entrance",
-          "entryYaw": 3.08104041402954
+          "entryYaw": 0.20392281952356583,
+          "entryPitch": 0.2629701062772227,
+          "entryView": {
+            "yaw": 0.20392281952356583,
+            "pitch": 0.2629701062772227
+          }
         },
         {
           "yaw": -2.9089019977375763,
           "pitch": 0.38985519223545495,
           "rotation": 0.7853981633974483,
           "target": "5-dining-room-back-left",
-          "entryYaw": -2.456104524414595
+          "entryYaw": -0.019511547478204605
         },
         {
           "yaw": 3.0318205430336054,
           "pitch": 0.395487942368808,
           "rotation": 0,
           "target": "8-staircase-intersection",
-          "entryYaw": 0.947598165143539
+          "entryYaw": -1.8447146260738894,
+          "entryPitch": 0.19315683369674552,
+          "entryView": {
+            "yaw": -1.8447146260738894,
+            "pitch": 0.19315683369674552
+          }
         },
         {
           "yaw": -0.01803373443232914,
           "pitch": 0.63591404683517,
           "rotation": 1.5707963267948966,
           "target": "11-piano-room-left",
-          "entryYaw": 0.6724948046856536
+          "entryYaw": -2.405329175056881,
+          "entryPitch": 0.030346126841811483,
+          "entryView": {
+            "yaw": -2.405329175056881,
+            "pitch": 0.030346126841811483
+          }
         }
       ],
       "infoHotspots": [],
@@ -617,28 +712,33 @@ var APP_DATA = {
           "pitch": 0.634898980717491,
           "rotation": 4.71238898038469,
           "target": "5-dining-room-back-left",
-          "entryYaw": -1.2730077054196638
+          "entryYaw": -0.019511547478204605
         },
         {
           "yaw": 0.947598165143539,
           "pitch": 0.612960560111059,
           "rotation": 6.283185307179586,
           "target": "7-front-hall",
-          "entryYaw": 3.0318205430336054
+          "entryYaw": -0.16458827630988893,
+          "entryPitch": 0.08416182448114995,
+          "entryView": {
+            "yaw": -0.16458827630988893,
+            "pitch": 0.08416182448114995
+          }
         },
         {
           "yaw": 1.9775510602968698,
           "pitch": 0.7551867114016311,
           "rotation": 5.497787143782138,
           "target": "12-upstairs",
-          "entryYaw": -2.7660859118449945
+          "entryYaw": -1.0118826848445472
         },
         {
           "yaw": 2.874087148928904,
           "pitch": 0.6618155651844475,
           "rotation": 6.283185307179586,
           "target": "9-piano-room-right",
-          "entryYaw": 3.0979561866381955
+          "entryYaw": 0
         }
       ],
       "infoHotspots": [],
@@ -694,14 +794,24 @@ var APP_DATA = {
           "pitch": 0.4551742010384334,
           "rotation": 0,
           "target": "8-staircase-intersection",
-          "entryYaw": 2.874087148928904
+          "entryYaw": -0.1678238929628133,
+          "entryPitch": 0.17878172896142885,
+          "entryView": {
+            "yaw": -0.1678238929628133,
+            "pitch": 0.17878172896142885
+          }
         },
         {
           "yaw": -0.9600309207790616,
           "pitch": 0.7212016745965606,
           "rotation": 0,
           "target": "10-piano-room-center",
-          "entryYaw": -1.9258808493660737
+          "entryYaw": 0.326699236035072,
+          "entryPitch": -0.017347970375855226,
+          "entryView": {
+            "yaw": 0.326699236035072,
+            "pitch": -0.017347970375855226
+          }
         }
       ],
       "infoHotspots": [
@@ -779,14 +889,24 @@ var APP_DATA = {
           "pitch": 0.5704052385797667,
           "rotation": 5.497787143782138,
           "target": "11-piano-room-left",
-          "entryYaw": -1.44235369708786
+          "entryYaw": 0.3844986841961173,
+          "entryPitch": 0.02440584799359158,
+          "entryView": {
+            "yaw": 0.3844986841961173,
+            "pitch": 0.02440584799359158
+          }
         },
         {
           "yaw": -1.9258808493660737,
           "pitch": 0.6835050350013212,
           "rotation": 0,
           "target": "9-piano-room-right",
-          "entryYaw": -0.9600309207790616
+          "entryYaw": 2.9253189657833616,
+          "entryPitch": 0.0739705247111182,
+          "entryView": {
+            "yaw": 2.9253189657833616,
+            "pitch": 0.0739705247111182
+          }
         }
       ],
       "infoHotspots": [
@@ -856,14 +976,19 @@ var APP_DATA = {
           "pitch": 0.6361653838543155,
           "rotation": 0,
           "target": "10-piano-room-center",
-          "entryYaw": 0.14796637315338756
+          "entryYaw": -2.5034896121864545,
+          "entryPitch": -0.11709880003700235,
+          "entryView": {
+            "yaw": -2.5034896121864545,
+            "pitch": -0.11709880003700235
+          }
         },
         {
           "yaw": 0.6724948046856536,
           "pitch": 0.45037824863905307,
           "rotation": 0,
           "target": "7-front-hall",
-          "entryYaw": -0.01803373443232914
+          "entryYaw": 2.975226828420423
         }
       ],
       "infoHotspots": [
@@ -948,28 +1073,48 @@ var APP_DATA = {
           "pitch": 0.9412246004252509,
           "rotation": 0,
           "target": "8-staircase-intersection",
-          "entryYaw": 1.9775510602968698
+          "entryYaw": -1.7484273206472523,
+          "entryPitch": -0.19366910439346086,
+          "entryView": {
+            "yaw": -1.7484273206472523,
+            "pitch": -0.19366910439346086
+          }
         },
         {
           "yaw": -1.1993766774062529,
           "pitch": 0.5907089360730815,
           "rotation": 0,
           "target": "17-bathroom",
-          "entryYaw": 3.027286504287238
+          "entryYaw": -0.06188323762905412,
+          "entryPitch": 0.24421737533331722,
+          "entryView": {
+            "yaw": -0.06188323762905412,
+            "pitch": 0.24421737533331722
+          }
         },
         {
           "yaw": -0.23507389628185038,
           "pitch": 0.7225611864949713,
           "rotation": 0.7853981633974483,
           "target": "13-bedroom-1-entry",
-          "entryYaw": -2.0910310420364784
+          "entryYaw": 1.1168025820807994,
+          "entryPitch": 0.09885166291924996,
+          "entryView": {
+            "yaw": 1.1168025820807994,
+            "pitch": 0.09885166291924996
+          }
         },
         {
           "yaw": -1.7950019345394725,
           "pitch": 0.6535623461371571,
           "rotation": 5.497787143782138,
           "target": "19-upstairs-hall-end",
-          "entryYaw": -0.06408219791237002
+          "entryYaw": -2.029819864366262,
+          "entryPitch": 0.08655647757024809,
+          "entryView": {
+            "yaw": -2.029819864366262,
+            "pitch": 0.08655647757024809
+          }
         }
       ],
       "infoHotspots": [],
@@ -1025,14 +1170,24 @@ var APP_DATA = {
           "pitch": 0.6348801330394611,
           "rotation": 0,
           "target": "12-upstairs",
-          "entryYaw": -0.23507389628185038
+          "entryYaw": -2.460596936838604,
+          "entryPitch": 0.25463276702276616,
+          "entryView": {
+            "yaw": -2.460596936838604,
+            "pitch": 0.25463276702276616
+          }
         },
         {
           "yaw": 1.0734843849602136,
           "pitch": 0.7774634298664687,
           "rotation": 6.283185307179586,
           "target": "14-bed-1-front",
-          "entryYaw": -1.2499565500362948
+          "entryYaw": 2.347693041161314,
+          "entryPitch": 0.08271721147385236,
+          "entryView": {
+            "yaw": 2.347693041161314,
+            "pitch": 0.08271721147385236
+          }
         }
       ],
       "infoHotspots": [
@@ -1103,14 +1258,24 @@ var APP_DATA = {
           "pitch": 0.5155969539078757,
           "rotation": 0,
           "target": "13-bedroom-1-entry",
-          "entryYaw": 1.0734843849602136
+          "entryYaw": -1.4939540030137675,
+          "entryPitch": 0.04420151290909935,
+          "entryView": {
+            "yaw": -1.4939540030137675,
+            "pitch": 0.04420151290909935
+          }
         },
         {
           "yaw": 0.9128658670415835,
           "pitch": 0.8473739126886883,
           "rotation": 0,
           "target": "15-bed-corner",
-          "entryYaw": -0.7956654711707216
+          "entryYaw": -2.9797645659616823,
+          "entryPitch": -0.11103310480866568,
+          "entryView": {
+            "yaw": -2.9797645659616823,
+            "pitch": -0.11103310480866568
+          }
         }
       ],
       "infoHotspots": [
@@ -1174,14 +1339,24 @@ var APP_DATA = {
           "pitch": 0.6025257008580382,
           "rotation": 0.7853981633974483,
           "target": "14-bed-1-front",
-          "entryYaw": 0.9128658670415835
+          "entryYaw": -1.490884676903228,
+          "entryPitch": 0.0762281734302146,
+          "entryView": {
+            "yaw": -1.490884676903228,
+            "pitch": 0.0762281734302146
+          }
         },
         {
           "yaw": 1.4355498167126681,
           "pitch": 0.8685950639555244,
           "rotation": 0.7853981633974483,
           "target": "16-vanity",
-          "entryYaw": -2.2048994295738904
+          "entryYaw": 2.519422892469958,
+          "entryPitch": 0.07872584159357743,
+          "entryView": {
+            "yaw": 2.519422892469958,
+            "pitch": 0.07872584159357743
+          }
         }
       ],
       "infoHotspots": [
@@ -1252,7 +1427,12 @@ var APP_DATA = {
           "pitch": 0.6384873746436384,
           "rotation": 0.7853981633974483,
           "target": "15-bed-corner",
-          "entryYaw": 1.4355498167126681
+          "entryYaw": -1.642950556305662,
+          "entryPitch": 0.13935147054937502,
+          "entryView": {
+            "yaw": -1.642950556305662,
+            "pitch": 0.13935147054937502
+          }
         }
       ],
       "infoHotspots": [],
@@ -1308,7 +1488,12 @@ var APP_DATA = {
           "pitch": 0.3950937100733434,
           "rotation": 0,
           "target": "12-upstairs",
-          "entryYaw": -1.1993766774062529
+          "entryYaw": -2.470430600036165,
+          "entryPitch": 0.2792825719465313,
+          "entryView": {
+            "yaw": -2.470430600036165,
+            "pitch": 0.2792825719465313
+          }
         }
       ],
       "infoHotspots": [
@@ -1427,14 +1612,24 @@ var APP_DATA = {
           "pitch": 0.5826230077828427,
           "rotation": 0,
           "target": "12-upstairs",
-          "entryYaw": -1.7950019345394725
+          "entryYaw": -1.2202199307764499,
+          "entryPitch": 0.24984098190770965,
+          "entryView": {
+            "yaw": -1.2202199307764499,
+            "pitch": 0.24984098190770965
+          }
         },
         {
           "yaw": -2.278811111269391,
           "pitch": 0.8488392095260302,
           "rotation": 0,
           "target": "20-bedroom-2-entry",
-          "entryYaw": 0.34506723980839205
+          "entryYaw": 3.0243660101355125,
+          "entryPitch": 0.0032561362871739163,
+          "entryView": {
+            "yaw": 3.0243660101355125,
+            "pitch": 0.0032561362871739163
+          }
         }
       ],
       "infoHotspots": [],
@@ -1491,14 +1686,19 @@ var APP_DATA = {
           "pitch": 0.5900989999274344,
           "rotation": 0,
           "target": "21-bed-2-front",
-          "entryYaw": -0.8519032992073541
+          "entryYaw": -3.0189342403564297
         },
         {
           "yaw": 0.34506723980839205,
           "pitch": 0.9601329843638275,
           "rotation": 0,
           "target": "19-upstairs-hall-end",
-          "entryYaw": -2.278811111269391
+          "entryYaw": 0.10978783265309744,
+          "entryPitch": 0.017383287325914765,
+          "entryView": {
+            "yaw": 0.10978783265309744,
+            "pitch": 0.017383287325914765
+          }
         }
       ],
       "infoHotspots": [
@@ -1562,14 +1762,24 @@ var APP_DATA = {
           "pitch": 0.5417478288107453,
           "rotation": 0,
           "target": "22-bed-2-corner",
-          "entryYaw": -1.5278586126662361
+          "entryYaw": 0.09326820295100546,
+          "entryPitch": 0.051130860055142335,
+          "entryView": {
+            "yaw": 0.09326820295100546,
+            "pitch": 0.051130860055142335
+          }
         },
         {
           "yaw": -0.8519032992073541,
           "pitch": 0.5660514429599246,
           "rotation": 0,
           "target": "20-bedroom-2-entry",
-          "entryYaw": 2.9042816330257377
+          "entryYaw": 0.2809067567619614,
+          "entryPitch": 0.22608923721948493,
+          "entryView": {
+            "yaw": 0.2809067567619614,
+            "pitch": 0.22608923721948493
+          }
         }
       ],
       "infoHotspots": [
@@ -1649,7 +1859,12 @@ var APP_DATA = {
           "pitch": 0.46977379629653626,
           "rotation": 0,
           "target": "21-bed-2-front",
-          "entryYaw": -3.024620626303051
+          "entryYaw": -0.08971589117012968,
+          "entryPitch": 0.126724747911247,
+          "entryView": {
+            "yaw": -0.08971589117012968,
+            "pitch": 0.126724747911247
+          }
         }
       ],
       "infoHotspots": [
@@ -1714,21 +1929,26 @@ var APP_DATA = {
           "pitch": 0.17480932519832848,
           "rotation": 0,
           "target": "0-dey-house-entrance",
-          "entryYaw": 0.1937077043929616
+          "entryYaw": -2.9301580869260846
         },
         {
           "yaw": 2.403837671824556,
           "pitch": 0.013550664775191734,
           "rotation": 0,
           "target": "35-barn-outside",
-          "entryYaw": -0.3630114770561512
+          "entryYaw": 3.0306882781575837,
+          "entryPitch": -0.17271435212429154,
+          "entryView": {
+            "yaw": 3.0306882781575837,
+            "pitch": -0.17271435212429154
+          }
         },
         {
           "yaw": -2.607142969448848,
           "pitch": -0.07313102784854308,
           "rotation": 0,
           "target": "24-schoolhouse-outside",
-          "entryYaw": -1.2656195436610904
+          "entryYaw": -3.0581580775431156
         }
       ],
       "infoHotspots": [
@@ -1800,28 +2020,38 @@ var APP_DATA = {
           "pitch": 0.23228793882488574,
           "rotation": 0,
           "target": "25-schoolhouse-entryway",
-          "entryYaw": -0.6335584009066544
+          "entryYaw": 1.4606940893825584,
+          "entryPitch": 0.1619076596583504,
+          "entryView": {
+            "yaw": 1.4606940893825584,
+            "pitch": 0.1619076596583504
+          }
         },
         {
           "yaw": -1.2656195436610904,
           "pitch": -0.03613007643898314,
           "rotation": 0,
           "target": "23-house-outside",
-          "entryYaw": -2.607142969448848
+          "entryYaw": -0.07746135532451248
         },
         {
           "yaw": -0.6023080888233139,
           "pitch": -0.007934746177767238,
           "rotation": 0,
           "target": "35-barn-outside",
-          "entryYaw": -1.6864602721326456
+          "entryYaw": 0
         },
         {
           "yaw": -2.3746676765758785,
           "pitch": 0.01391906915014296,
           "rotation": 5.497787143782138,
           "target": "46-equipment-barn-outside",
-          "entryYaw": 1.4311168090152124
+          "entryYaw": -0.03853992982002907,
+          "entryPitch": -0.2737995015773862,
+          "entryView": {
+            "yaw": -0.03853992982002907,
+            "pitch": -0.2737995015773862
+          }
         }
       ],
       "infoHotspots": [],
@@ -1879,14 +2109,19 @@ var APP_DATA = {
           "pitch": 0.7778737805727669,
           "rotation": 0.7853981633974483,
           "target": "26-schoolhouse-front",
-          "entryYaw": -0.1579537665880011
+          "entryYaw": 3.0956499439995184
         },
         {
           "yaw": -0.6335584009066544,
           "pitch": 0.7056416102948049,
           "rotation": 5.497787143782138,
           "target": "24-schoolhouse-outside",
-          "entryYaw": -3.1404580264638735
+          "entryYaw": -1.095384122656199,
+          "entryPitch": -0.06732954053454243,
+          "entryView": {
+            "yaw": -1.095384122656199,
+            "pitch": -0.06732954053454243
+          }
         }
       ],
       "infoHotspots": [
@@ -1952,21 +2187,21 @@ var APP_DATA = {
           "pitch": 0.629211116738368,
           "rotation": 0,
           "target": "25-schoolhouse-entryway",
-          "entryYaw": 0.49869931534272993
+          "entryYaw": 0
         },
         {
           "yaw": 1.9674024692952798,
           "pitch": 0.737939331885439,
           "rotation": 0,
           "target": "27-schoolhouse-front-left",
-          "entryYaw": 0.4396867863838736
+          "entryYaw": 3.0647800946577757
         },
         {
           "yaw": -1.566969274061048,
           "pitch": 0.6765776044120102,
           "rotation": 0,
           "target": "34-schoolhouse-front-right",
-          "entryYaw": -1.661200586837074
+          "entryYaw": 3.0573761417070937
         }
       ],
       "infoHotspots": [],
@@ -2024,14 +2259,19 @@ var APP_DATA = {
           "pitch": 0.7534464845307003,
           "rotation": 0,
           "target": "26-schoolhouse-front",
-          "entryYaw": 1.9674024692952798
+          "entryYaw": -1.219202866507139,
+          "entryPitch": 0.1038472491617437,
+          "entryView": {
+            "yaw": -1.219202866507139,
+            "pitch": 0.1038472491617437
+          }
         },
         {
           "yaw": -1.8455194589747066,
           "pitch": 0.6484966574961248,
           "rotation": 0,
           "target": "28-schoolhouse-mid-left",
-          "entryYaw": 1.8953782739527938
+          "entryYaw": -2.8772228587429822
         }
       ],
       "infoHotspots": [
@@ -2106,14 +2346,19 @@ var APP_DATA = {
           "pitch": 0.4239564506203308,
           "rotation": 0,
           "target": "29-schoolhouse-back-left",
-          "entryYaw": 2.0577104779818134
+          "entryYaw": -2.769034600380188
         },
         {
           "yaw": 1.8953782739527938,
           "pitch": 0.7487434740598395,
           "rotation": 0,
           "target": "27-schoolhouse-front-left",
-          "entryYaw": -1.8455194589747066
+          "entryYaw": 1.6337139358851882,
+          "entryPitch": 0.3984810415937865,
+          "entryView": {
+            "yaw": 1.6337139358851882,
+            "pitch": 0.3984810415937865
+          }
         }
       ],
       "infoHotspots": [
@@ -2167,14 +2412,24 @@ var APP_DATA = {
           "pitch": 0.6525820892158247,
           "rotation": 0,
           "target": "28-schoolhouse-mid-left",
-          "entryYaw": -1.6477784039307348
+          "entryYaw": 2.083007140642831,
+          "entryPitch": 0.1460192268952465,
+          "entryView": {
+            "yaw": 2.083007140642831,
+            "pitch": 0.1460192268952465
+          }
         },
         {
           "yaw": -1.545702170607246,
           "pitch": 0.48839514548263097,
           "rotation": 0,
           "target": "30-schoolhouse-back",
-          "entryYaw": 0.9679300581024943
+          "entryYaw": -2.338981700857916,
+          "entryPitch": -0.25258324627930406,
+          "entryView": {
+            "yaw": -2.338981700857916,
+            "pitch": -0.25258324627930406
+          }
         }
       ],
       "infoHotspots": [
@@ -2228,14 +2483,19 @@ var APP_DATA = {
           "pitch": 0.4154114434977547,
           "rotation": 0,
           "target": "31-schoolhouse-back-right",
-          "entryYaw": 1.0690498385877394
+          "entryYaw": 3.002726850230875
         },
         {
           "yaw": 0.9679300581024943,
           "pitch": 0.8076479654832021,
           "rotation": 0,
           "target": "29-schoolhouse-back-left",
-          "entryYaw": -1.545702170607246
+          "entryYaw": 2.1943371264309945,
+          "entryPitch": 0.04147053595389316,
+          "entryView": {
+            "yaw": 2.1943371264309945,
+            "pitch": 0.04147053595389316
+          }
         }
       ],
       "infoHotspots": []
@@ -2274,14 +2534,19 @@ var APP_DATA = {
           "pitch": 0.7943533109892709,
           "rotation": 6.283185307179586,
           "target": "30-schoolhouse-back",
-          "entryYaw": -1.5301721392897978
+          "entryYaw": 1.3752900552641183,
+          "entryPitch": 0.16905980256197317,
+          "entryView": {
+            "yaw": 1.3752900552641183,
+            "pitch": 0.16905980256197317
+          }
         },
         {
           "yaw": -1.722854400004735,
           "pitch": 0.599315623109602,
           "rotation": 0,
           "target": "32-schoolhouse-mid-1-right",
-          "entryYaw": 1.7791578245739679
+          "entryYaw": 2.9240323869275286
         }
       ],
       "infoHotspots": [
@@ -2349,14 +2614,19 @@ var APP_DATA = {
           "pitch": 0.5515137592638979,
           "rotation": 5.497787143782138,
           "target": "31-schoolhouse-back-right",
-          "entryYaw": -1.722854400004735
+          "entryYaw": 1.806108596851164,
+          "entryPitch": 0.3445714970289089,
+          "entryView": {
+            "yaw": 1.806108596851164,
+            "pitch": 0.3445714970289089
+          }
         },
         {
           "yaw": -1.8362913981016113,
           "pitch": 0.4979425743492065,
           "rotation": 0,
           "target": "33-schoolhouse-mid-2-right",
-          "entryYaw": 1.84055425061407
+          "entryYaw": 3.0648443238686447
         }
       ],
       "infoHotspots": [
@@ -2403,14 +2673,14 @@ var APP_DATA = {
           "pitch": 0.6863383820629032,
           "rotation": 0,
           "target": "34-schoolhouse-front-right",
-          "entryYaw": 0.48535652402615526
+          "entryYaw": 3.0573761417070937
         },
         {
           "yaw": 1.84055425061407,
           "pitch": 0.6247053313136508,
           "rotation": 0,
           "target": "32-schoolhouse-mid-1-right",
-          "entryYaw": -1.8362913981016113
+          "entryYaw": 2.9240323869275286
         }
       ],
       "infoHotspots": []
@@ -2449,14 +2719,19 @@ var APP_DATA = {
           "pitch": 0.7144708535838475,
           "rotation": 0,
           "target": "33-schoolhouse-mid-2-right",
-          "entryYaw": -1.417531181225307
+          "entryYaw": 3.0648443238686447
         },
         {
           "yaw": -1.661200586837074,
           "pitch": 0.6639318621989965,
           "rotation": 0,
           "target": "26-schoolhouse-front",
-          "entryYaw": -1.566969274061048
+          "entryYaw": 1.7658064127341477,
+          "entryPitch": 0.09688466599312306,
+          "entryView": {
+            "yaw": 1.7658064127341477,
+            "pitch": 0.09688466599312306
+          }
         }
       ],
       "infoHotspots": [
@@ -2517,21 +2792,26 @@ var APP_DATA = {
           "pitch": 0.1180757151957188,
           "rotation": 0,
           "target": "23-house-outside",
-          "entryYaw": 2.403837671824556
+          "entryYaw": -0.07746135532451248
         },
         {
           "yaw": -1.6864602721326456,
           "pitch": -0.0025880299558291853,
           "rotation": 0,
           "target": "24-schoolhouse-outside",
-          "entryYaw": -0.6023080888233139
+          "entryYaw": -3.0581580775431156
         },
         {
           "yaw": 3.04924444396889,
           "pitch": 0.009280433096094498,
           "rotation": 0,
           "target": "36-barn-center",
-          "entryYaw": -0.2699598913132313
+          "entryYaw": 3.100120922463753,
+          "entryPitch": -0.03590345219284252,
+          "entryView": {
+            "yaw": 3.100120922463753,
+            "pitch": -0.03590345219284252
+          }
         }
       ],
       "infoHotspots": [],
@@ -2589,56 +2869,71 @@ var APP_DATA = {
           "pitch": 0.4426056877709321,
           "rotation": 0,
           "target": "35-barn-outside",
-          "entryYaw": 3.04924444396889
+          "entryYaw": 0
         },
         {
           "yaw": 1.1903824947152408,
           "pitch": 0.5214755757055407,
           "rotation": 0,
           "target": "37-barn-table",
-          "entryYaw": 0.9978102656227321
+          "entryYaw": 2.969211235895388,
+          "entryPitch": 0.07990930848310285,
+          "entryView": {
+            "yaw": 2.969211235895388,
+            "pitch": 0.07990930848310285
+          }
         },
         {
           "yaw": 1.7756237591771766,
           "pitch": 0.3665408508396286,
           "rotation": 0,
           "target": "38-barn-left",
-          "entryYaw": 0.24190392870386646
+          "entryYaw": 3.1006918119547358
         },
         {
           "yaw": 2.283948343056239,
           "pitch": 0.3323047895576554,
           "rotation": 0,
           "target": "39-barn-left-back",
-          "entryYaw": -1.0569318766260611
+          "entryYaw": 2.4154043400607694
         },
         {
           "yaw": -1.4136969155594592,
           "pitch": 0.42014702230748213,
           "rotation": 12.566370614359176,
           "target": "41-woodworking-station",
-          "entryYaw": -2.6027249543316273
+          "entryYaw": -0.21889948811777948,
+          "entryPitch": 0.1575773975806527,
+          "entryView": {
+            "yaw": -0.21889948811777948,
+            "pitch": 0.1575773975806527
+          }
         },
         {
           "yaw": -1.7470637427386855,
           "pitch": 0.3207859687458896,
           "rotation": 5.497787143782138,
           "target": "40-barn-car",
-          "entryYaw": 0
+          "entryYaw": -0.4257426311903014
         },
         {
           "yaw": -2.5097663052170223,
           "pitch": 0.21905048543487382,
           "rotation": 0.7853981633974483,
           "target": "42-car-close-up",
-          "entryYaw": -3.014014683763113
+          "entryYaw": 0.22907351022794487
         },
         {
           "yaw": 3.1017536963430175,
           "pitch": 0.17247410255518325,
           "rotation": 0,
           "target": "43-barn-outside-back",
-          "entryYaw": -2.3777107440904235
+          "entryYaw": 1.2549650121112261,
+          "entryPitch": 0.16561777756057516,
+          "entryView": {
+            "yaw": 1.2549650121112261,
+            "pitch": 0.16561777756057516
+          }
         }
       ],
       "infoHotspots": [],
@@ -2696,14 +2991,24 @@ var APP_DATA = {
           "pitch": 0.5289794161854324,
           "rotation": 0,
           "target": "36-barn-center",
-          "entryYaw": 1.1903824947152408
+          "entryYaw": -1.869478845335415,
+          "entryPitch": 0.029865639005643985,
+          "entryView": {
+            "yaw": -1.869478845335415,
+            "pitch": 0.029865639005643985
+          }
         },
         {
           "yaw": -0.5853524185347609,
           "pitch": 0.6932680015546389,
           "rotation": 0,
           "target": "38-barn-left",
-          "entryYaw": 1.183245055948289
+          "entryYaw": -2.9630372503920253,
+          "entryPitch": -0.11682147218524008,
+          "entryView": {
+            "yaw": -2.9630372503920253,
+            "pitch": -0.11682147218524008
+          }
         }
       ],
       "infoHotspots": [
@@ -2818,21 +3123,26 @@ var APP_DATA = {
           "pitch": 0.7804297388018675,
           "rotation": 0.7853981633974483,
           "target": "37-barn-table",
-          "entryYaw": -0.5853524185347609
+          "entryYaw": 2.8084305621354027
         },
         {
           "yaw": -1.420373895573114,
           "pitch": 0.6144092795674396,
           "rotation": 0,
           "target": "39-barn-left-back",
-          "entryYaw": 0.5749717940276433
+          "entryYaw": 2.3648128353797038,
+          "entryPitch": 0.127837602614278,
+          "entryView": {
+            "yaw": 2.3648128353797038,
+            "pitch": 0.127837602614278
+          }
         },
         {
           "yaw": 0.24190392870386646,
           "pitch": 0.5774823288506035,
           "rotation": 0,
           "target": "36-barn-center",
-          "entryYaw": 1.7756237591771766
+          "entryYaw": 3.0572192107403318
         }
       ],
       "infoHotspots": [
@@ -2898,21 +3208,26 @@ var APP_DATA = {
           "pitch": 0.7038365019216748,
           "rotation": 0,
           "target": "38-barn-left",
-          "entryYaw": -1.420373895573114
+          "entryYaw": 3.1006918119547358
         },
         {
           "yaw": -1.0569318766260611,
           "pitch": 0.5610902184570961,
           "rotation": 0,
           "target": "36-barn-center",
-          "entryYaw": 2.283948343056239
+          "entryYaw": -1.1741896564298298,
+          "entryPitch": -0.08948211324239352,
+          "entryView": {
+            "yaw": -1.1741896564298298,
+            "pitch": -0.08948211324239352
+          }
         },
         {
           "yaw": -2.5278801036005376,
           "pitch": 0.4660947750974813,
           "rotation": 0,
           "target": "43-barn-outside-back",
-          "entryYaw": 0
+          "entryYaw": 0.6227887512931645
         }
       ],
       "infoHotspots": [],
@@ -2970,14 +3285,19 @@ var APP_DATA = {
           "pitch": 0.3601493434616838,
           "rotation": 0,
           "target": "41-woodworking-station",
-          "entryYaw": -1.1951252120807432
+          "entryYaw": 2.887066982575705,
+          "entryPitch": 0.1552072063773906,
+          "entryView": {
+            "yaw": 2.887066982575705,
+            "pitch": 0.1552072063773906
+          }
         },
         {
           "yaw": -1.3813181651327824,
           "pitch": 0.36476161599399504,
           "rotation": 0.7853981633974483,
           "target": "42-car-close-up",
-          "entryYaw": 2.2230073642702752
+          "entryYaw": 0.22907351022794487
         }
       ],
       "infoHotspots": [
@@ -3057,14 +3377,19 @@ var APP_DATA = {
           "pitch": 0.5495075504867444,
           "rotation": 0,
           "target": "40-barn-car",
-          "entryYaw": -2.9154964045755474
+          "entryYaw": -0.475944627368893,
+          "entryPitch": 0.09332689397622929,
+          "entryView": {
+            "yaw": -0.475944627368893,
+            "pitch": 0.09332689397622929
+          }
         },
         {
           "yaw": -2.6027249543316273,
           "pitch": 0.35504382883601693,
           "rotation": 0,
           "target": "36-barn-center",
-          "entryYaw": -1.4136969155594592
+          "entryYaw": 3.0572192107403318
         },
         {
           "yaw": 1.9465481933630029,
@@ -3159,14 +3484,24 @@ var APP_DATA = {
           "pitch": 0.5820769220705717,
           "rotation": 0,
           "target": "40-barn-car",
-          "entryYaw": -1.3813181651327824
+          "entryYaw": -3.0312877266405067,
+          "entryPitch": 0.14069359031144657,
+          "entryView": {
+            "yaw": -3.0312877266405067,
+            "pitch": 0.14069359031144657
+          }
         },
         {
           "yaw": -3.014014683763113,
           "pitch": 0.39328291944897487,
           "rotation": 0,
           "target": "36-barn-center",
-          "entryYaw": -2.5097663052170223
+          "entryYaw": 0.9793641916497116,
+          "entryPitch": 0.21283624413849012,
+          "entryView": {
+            "yaw": 0.9793641916497116,
+            "pitch": 0.21283624413849012
+          }
         }
       ],
       "infoHotspots": [],
@@ -3224,21 +3559,31 @@ var APP_DATA = {
           "pitch": 0.197011249435608,
           "rotation": 0,
           "target": "36-barn-center",
-          "entryYaw": 3.1017536963430175
+          "entryYaw": -0.20753676653745678,
+          "entryPitch": -0.11300155521889721,
+          "entryView": {
+            "yaw": -0.20753676653745678,
+            "pitch": -0.11300155521889721
+          }
         },
         {
           "yaw": 1.0982077592283677,
           "pitch": 0.5558037407165966,
           "rotation": 0,
           "target": "44-barn-field-view",
-          "entryYaw": 2.8797055299022025
+          "entryYaw": -0.2875388902320726,
+          "entryPitch": 0.012234610148436076,
+          "entryView": {
+            "yaw": -0.2875388902320726,
+            "pitch": 0.012234610148436076
+          }
         },
         {
           "yaw": 2.7709425977939217,
           "pitch": 0.20741512814463725,
           "rotation": 0,
           "target": "45-old-machines",
-          "entryYaw": -2.994815883324634
+          "entryYaw": 0
         }
       ],
       "infoHotspots": [],
@@ -3296,7 +3641,12 @@ var APP_DATA = {
           "pitch": 0.34822532436567144,
           "rotation": 0,
           "target": "43-barn-outside-back",
-          "entryYaw": 1.0982077592283677
+          "entryYaw": -2.1119653578107513,
+          "entryPitch": -0.12532380944137955,
+          "entryView": {
+            "yaw": -2.1119653578107513,
+            "pitch": -0.12532380944137955
+          }
         }
       ],
       "infoHotspots": [
@@ -3376,21 +3726,26 @@ var APP_DATA = {
           "pitch": 0.43051431321116773,
           "rotation": 0,
           "target": "43-barn-outside-back",
-          "entryYaw": 2.7709425977939217
+          "entryYaw": -0.3078935575140065,
+          "entryPitch": 0.010036037254446128,
+          "entryView": {
+            "yaw": -0.3078935575140065,
+            "pitch": 0.010036037254446128
+          }
         },
         {
           "yaw": 2.4851269809228036,
           "pitch": 0.3405388031956207,
           "rotation": 6.283185307179586,
           "target": "36-barn-center",
-          "entryYaw": 0
+          "entryYaw": 3.0572192107403318
         },
         {
           "yaw": -2.475238456890633,
           "pitch": 0.2712847356459207,
           "rotation": 0.7853981633974483,
           "target": "44-barn-field-view",
-          "entryYaw": 0
+          "entryYaw": -0.35573873075117923
         }
       ],
       "infoHotspots": [
@@ -3463,14 +3818,19 @@ var APP_DATA = {
           "pitch": -0.008764438669095043,
           "rotation": 5.497787143782138,
           "target": "24-schoolhouse-outside",
-          "entryYaw": -2.3746676765758785
+          "entryYaw": -3.0581580775431156
         },
         {
           "yaw": -0.014072875735649859,
           "pitch": 0.3508634294246775,
           "rotation": 0,
           "target": "47-military-car-front",
-          "entryYaw": 3.134277506744377
+          "entryYaw": -0.03629752748630821,
+          "entryPitch": 0.14601208399675158,
+          "entryView": {
+            "yaw": -0.03629752748630821,
+            "pitch": 0.14601208399675158
+          }
         }
       ],
       "infoHotspots": [],
@@ -3528,21 +3888,26 @@ var APP_DATA = {
           "pitch": 0.4215045570012741,
           "rotation": 0,
           "target": "46-equipment-barn-outside",
-          "entryYaw": -0.014072875735649859
+          "entryYaw": 0.9971835906724067,
+          "entryPitch": -0.18523505494777837,
+          "entryView": {
+            "yaw": 0.9971835906724067,
+            "pitch": -0.18523505494777837
+          }
         },
         {
           "yaw": -0.7535536185407459,
           "pitch": 0.5194512686032464,
           "rotation": 0,
           "target": "48-military-car-left",
-          "entryYaw": -2.4909271654720975
+          "entryYaw": 2.827879938968783
         },
         {
           "yaw": 0.7548694511651703,
           "pitch": 0.5703510396461766,
           "rotation": 5.497787143782138,
           "target": "52-front-corner-of-military-car",
-          "entryYaw": 1.6391044613712742
+          "entryYaw": 2.498046648555751
         }
       ],
       "infoHotspots": [],
@@ -3608,14 +3973,19 @@ var APP_DATA = {
           "pitch": 0.6286004758221342,
           "rotation": 0,
           "target": "58-tool-display-3",
-          "entryYaw": 0.713613140306693
+          "entryYaw": -3.1032491783361884
         },
         {
           "yaw": -2.4909271654720975,
           "pitch": 0.5247217137491091,
           "rotation": 0,
           "target": "47-military-car-front",
-          "entryYaw": -0.7535536185407459
+          "entryYaw": -3.0442205048572664,
+          "entryPitch": 0.0162142450144529,
+          "entryView": {
+            "yaw": -3.0442205048572664,
+            "pitch": 0.0162142450144529
+          }
         }
       ],
       "infoHotspots": [],
@@ -3704,14 +4074,14 @@ var APP_DATA = {
           "pitch": 0.4002602172480252,
           "rotation": 0,
           "target": "57-tool-display-2",
-          "entryYaw": -0.5910711653934726
+          "entryYaw": -2.853435392142009
         },
         {
           "yaw": 2.331300688310086,
           "pitch": 0.5434080764697651,
           "rotation": 5.497787143782138,
           "target": "53-old-equipment-0",
-          "entryYaw": 0
+          "entryYaw": 3.0020377858876497
         }
       ],
       "infoHotspots": [],
@@ -3771,14 +4141,14 @@ var APP_DATA = {
           "pitch": 0.3351877032466568,
           "rotation": 0,
           "target": "52-front-corner-of-military-car",
-          "entryYaw": -2.8225296217728744
+          "entryYaw": 2.498046648555751
         },
         {
           "yaw": -1.1963251897511888,
           "pitch": 0.45484871356983625,
           "rotation": 0,
           "target": "53-old-equipment-0",
-          "entryYaw": -0.375288263970571
+          "entryYaw": 3.0020377858876497
         }
       ],
       "infoHotspots": [],
@@ -3837,14 +4207,24 @@ var APP_DATA = {
           "pitch": 0.2679926287358949,
           "rotation": 0,
           "target": "51-back-of-military-car",
-          "entryYaw": 2.3437681457383555
+          "entryYaw": -1.039260895221961,
+          "entryPitch": 0.22207139898156747,
+          "entryView": {
+            "yaw": -1.039260895221961,
+            "pitch": 0.22207139898156747
+          }
         },
         {
           "yaw": 1.6391044613712742,
           "pitch": 0.9414065550574051,
           "rotation": 0,
           "target": "47-military-car-front",
-          "entryYaw": 0.7548694511651703
+          "entryYaw": -1.4885965190138073,
+          "entryPitch": 0.11683595200100072,
+          "entryView": {
+            "yaw": -1.4885965190138073,
+            "pitch": 0.11683595200100072
+          }
         }
       ],
       "infoHotspots": [],
@@ -3902,21 +4282,31 @@ var APP_DATA = {
           "pitch": 0.41027959403223235,
           "rotation": 0,
           "target": "48-military-car-left",
-          "entryYaw": 0
+          "entryYaw": -1.5428004056997722,
+          "entryPitch": 0.24690553095490486,
+          "entryView": {
+            "yaw": -1.5428004056997722,
+            "pitch": 0.24690553095490486
+          }
         },
         {
           "yaw": -0.375288263970571,
           "pitch": 0.4185207098511672,
           "rotation": 0,
           "target": "51-back-of-military-car",
-          "entryYaw": -1.1963251897511888
+          "entryYaw": 2.5785395068460737,
+          "entryPitch": 0.20813177385783632,
+          "entryView": {
+            "yaw": 2.5785395068460737,
+            "pitch": 0.20813177385783632
+          }
         },
         {
           "yaw": 3.0808073618826803,
           "pitch": 0.37776379222756873,
           "rotation": 0,
           "target": "59-old-equipment-1",
-          "entryYaw": 3.0836045235030287
+          "entryYaw": 0
         }
       ],
       "infoHotspots": [],
@@ -3974,14 +4364,19 @@ var APP_DATA = {
           "pitch": 0.33187305007873746,
           "rotation": 0,
           "target": "55-old-equipment-3",
-          "entryYaw": -3.02746890098698
+          "entryYaw": 0
         },
         {
           "yaw": -2.9230195640860597,
           "pitch": 0.3162371193323317,
           "rotation": 0,
           "target": "59-old-equipment-1",
-          "entryYaw": -0.1694685576582966
+          "entryYaw": -3.106168769410626,
+          "entryPitch": -0.07084866585827498,
+          "entryView": {
+            "yaw": -3.106168769410626,
+            "pitch": -0.07084866585827498
+          }
         }
       ],
       "infoHotspots": [
@@ -4053,14 +4448,19 @@ var APP_DATA = {
           "pitch": 0.6511173932218917,
           "rotation": 0,
           "target": "56-machinery-closeup",
-          "entryYaw": -2.2861607323411572
+          "entryYaw": 0
         },
         {
           "yaw": -3.02746890098698,
           "pitch": 0.36402322954084454,
           "rotation": 0,
           "target": "54-old-equipment-2",
-          "entryYaw": 0.030778455001232885
+          "entryYaw": -2.9384400314416688,
+          "entryPitch": 0.039105551029360086,
+          "entryView": {
+            "yaw": -2.9384400314416688,
+            "pitch": 0.039105551029360086
+          }
         }
       ],
       "infoHotspots": [
@@ -4131,7 +4531,12 @@ var APP_DATA = {
           "pitch": 0.4482827824232629,
           "rotation": 0,
           "target": "55-old-equipment-3",
-          "entryYaw": 0.31860675873532607
+          "entryYaw": -3.0246476671032987,
+          "entryPitch": 0.0387997617008331,
+          "entryView": {
+            "yaw": -3.0246476671032987,
+            "pitch": 0.0387997617008331
+          }
         }
       ],
       "infoHotspots": [
@@ -4210,14 +4615,19 @@ var APP_DATA = {
           "pitch": 0.5758666030334698,
           "rotation": 0,
           "target": "58-tool-display-3",
-          "entryYaw": -0.7384589182915171
+          "entryYaw": -3.1032491783361884
         },
         {
           "yaw": -0.5910711653934726,
           "pitch": 0.7869718579492702,
           "rotation": 0.7853981633974483,
           "target": "50-tool-display-1",
-          "entryYaw": -0.8032667172718018
+          "entryYaw": 0.5126583295165101,
+          "entryPitch": 0.21459901171084184,
+          "entryView": {
+            "yaw": 0.5126583295165101,
+            "pitch": 0.21459901171084184
+          }
         }
       ],
       "infoHotspots": [],
@@ -4275,14 +4685,14 @@ var APP_DATA = {
           "pitch": 0.5527712481190434,
           "rotation": 0,
           "target": "48-military-car-left",
-          "entryYaw": -1.4681596299099038
+          "entryYaw": 2.827879938968783
         },
         {
           "yaw": -0.7384589182915171,
           "pitch": 0.5027799614629362,
           "rotation": 7.0685834705770345,
           "target": "57-tool-display-2",
-          "entryYaw": 2.087480935203078
+          "entryYaw": -2.853435392142009
         }
       ],
       "infoHotspots": [],
@@ -4340,14 +4750,19 @@ var APP_DATA = {
           "pitch": 0.39713007203160267,
           "rotation": 0,
           "target": "54-old-equipment-2",
-          "entryYaw": -2.9230195640860597
+          "entryYaw": 0
         },
         {
           "yaw": 3.0836045235030287,
           "pitch": 0.30269931900470937,
           "rotation": 0,
           "target": "53-old-equipment-0",
-          "entryYaw": 3.0808073618826803
+          "entryYaw": 0.049182018316114906,
+          "entryPitch": 0.046889589786452746,
+          "entryView": {
+            "yaw": 0.049182018316114906,
+            "pitch": 0.046889589786452746
+          }
         }
       ],
       "infoHotspots": [

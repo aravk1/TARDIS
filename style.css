@@ -397,6 +397,24 @@ main {
     color: #f7b538;
 }
 
+.reflection-button {
+    background: #f7b538;
+    color: #003b6f;
+    border: 3px solid #f7b538;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.reflection-button:hover {
+    background: transparent;
+    color: #f7b538;
+}
+
 .team-section {
     padding: 4rem 2rem;
 }

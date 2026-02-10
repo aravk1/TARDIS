@@ -704,3 +704,26 @@ main {
     padding: 0 0.5rem;
     line-height: 1;
 }
+
+.school-image-section {
+  padding: 2.5rem 1rem;
+}
+
+.school-image-figure {
+  margin: 0 auto;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.school-image-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+}
+
+.school-image-figure figcaption {
+  margin-top: 0.8rem;
+  font-style: italic;
+  color: #555;
+}

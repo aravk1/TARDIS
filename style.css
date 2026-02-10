@@ -718,12 +718,16 @@ main {
 .school-image-figure img {
   width: 100%;
   height: auto;
+  display: block;
   border-radius: 14px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+  border: 4px solid #000;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.15);
 }
+
 
 .school-image-figure figcaption {
   margin-top: 0.8rem;
   font-style: italic;
   color: #555;
 }
+
